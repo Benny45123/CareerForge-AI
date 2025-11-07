@@ -13,4 +13,4 @@ mongoose.connect(MONGO_URI).then(console.log("Connected to MongoDB")).catch((err
 app.get('/', (req, res) => {
     res.send('API is running...');
 })
-export { app };
+module.exports =  app ;
