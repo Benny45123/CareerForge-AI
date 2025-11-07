@@ -22,4 +22,4 @@ dist-ssr
 *.sln
 *.sw?
 .env
-app.js
+server.js
