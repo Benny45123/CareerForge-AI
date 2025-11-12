@@ -13,7 +13,9 @@ const MONGO_URI = process.env.MONGO_URI;
 mongoose.connect(MONGO_URI).then(console.log("Connected to MongoDB")).catch((err) => console.log(err));
 app.post('/api/register',registerUser);
 app.post('/api/login',loginUser);
-app.get('/api',authenticateToken,(req, res) => {
+app.use(authenticateToken);
+app.use('/api/cover-letter',coverLetterRoute.router);
+app.get('/api',(req, res) => {
     res.send('API is running...');
 })
 module.exports =  app ;

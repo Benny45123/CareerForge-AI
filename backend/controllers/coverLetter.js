@@ -1,11 +1,9 @@
-const pdfParser = require('pdf-parse');
+const pdfParse = require('pdf-parse');
 const CoverLetter = require('../models/coverLetterSchema.js');
-const {GoogleGenerativeAI}=require("@google/generative-ai");
-require('dotenv').config();
-const genAI=new GoogleGenerativeAI(
-    process.env.GOOGLE_GEN_AI_API_KEY
-);
+const {GoogleGenAI}= require('@google/genai');
+const API_KEY = process.env.GOOGLE_GEN_AI_API_KEY;
 const generateCoverLetter = async (req, res) => {
+    console.log(req.body);
     try{
         const { jobDescription,
             skillsFocus,
@@ -15,7 +13,7 @@ const generateCoverLetter = async (req, res) => {
         if (!req.file) {
             return res.status(400).json({ error: 'Resume file is required' });
         }
-        const resumeData = await pdfParser(req.file.buffer);
+        const resumeData = await pdfParse(req.file.buffer);
         const resumeText = resumeData.text;
         const prompt =`You are an expert HR writer and resume analyst with 20+ years of experience writing high-impact cover letters.
 
@@ -62,11 +60,11 @@ STRICT RULES:
    - confident
    - professional
    - sincere
-   - aligned with the company’s needs
+   - aligned with the company's needs
 
 5. Structure:
    - Strong opening line
-   - 2–3 focused paragraphs connecting resume → job description
+   - 2 to 3 focused paragraphs connecting resume → job description
    - Highlight achievements and skills that match the job
    - Include recruiter details
    - Courteous closing paragraph
@@ -85,11 +83,12 @@ STRICT RULES:
    - NO explanations, NO notes.
 
 `
-        const model=genAI.getGenerativeModel({model:'gemini-1.5-flash'});
-        const result=await model.generateContent({
-            prompt:prompt,
-        });
-        const generatedLetter=result.response.text;
+    const ai = new GoogleGenAI({ apiKey: API_KEY });
+    const response = await ai.models.generateContent({
+        model: "gemini-2.0-flash",
+        contents: prompt,
+    })
+    const generatedLetter = response.text.trim();
         const saved=await CoverLetter.create({
             jobDescription,
             skillsFocus,

@@ -1,6 +1,6 @@
-import logo from './assets/app-logo.jpeg'
+import logo from '../assets/app-logo.jpeg'
 import {Link} from 'react-router-dom'
-import userlogo from './assets/human.png'
+import userlogo from '../assets/human.png'
 const NavBar=({isOpen}) => {
     return(<>
     {isOpen &&
