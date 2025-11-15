@@ -7,7 +7,7 @@ const postData=async (data) =>{
     formData.append('recruiterDesignation', data.designation);
     formData.append('companyName', data.companyName);
     try {
-        const response = await fetch('http://localhost:3120/api/cover-letter/generate-cover-letter', {
+        const response = await fetch('/api/cover-letter/generate-cover-letter', {
             method: 'POST',
             body: formData
         })

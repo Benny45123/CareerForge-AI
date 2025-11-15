@@ -19,9 +19,9 @@ const FillData = ({isOpen,getFormData}) => {
     getFormData(data);
   }
     return (
-        <>
-        <div style={{ marginLeft: isOpen ? "25%" : "0",height:'70vh' ,overflowY: "auto"}}className="transition-all duration-300 md:w-3/4 bg-gray-200 h-full p-4 pb-0">
-    <div className='bg-white p-6 rounded-2xl shadow-md mb-10'>
+    <>
+    <div style={{ marginLeft: isOpen ? "25%" : "0",height:'70vh',overflowY:"auto" }}className="transition-all duration-300 md:w-3/4 h-full bg-gray-200 p-4 ">
+    <div className='bg-white p-6 rounded-2xl shadow-md'>
       <h1 className='font-bold '>Generate your Cover Letter </h1>
       <br />
       <h1 className='font-semibold'>Content:</h1>
@@ -42,7 +42,7 @@ const FillData = ({isOpen,getFormData}) => {
     </div>
       </div>
      <br/></div>
-     <div style={{ marginLeft: isOpen ? "25%" : "0",height:"30vh",overflowY: "auto",top: "7.5rem" }}className="transition-all duration-300 md:w-3/4 bg-gray-200 h-full p-4 pt-0">
+     <div style={{ marginLeft: isOpen ? "25%" : "0",height:"30vh",top: "7.5rem" }}className="transition-all duration-300 md:w-3/4 bg-gray-200 h-full p-4 ">
       <div className='bg-white p-4 rounded-2xl shadow-md mb-10'>
       
         <label className="font-bold">To:</label>

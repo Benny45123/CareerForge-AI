@@ -4,8 +4,13 @@ const cors = require("cors");
 const dotenv = require( "dotenv");
 const { registerUser, loginUser ,authenticateToken } = require("./services/Authentication.js");
 const app = express();
+const coverLetterRoute = require("./routes/coverLetterRoute.js");
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin : ['http://localhost:5173', 'https://career-forge-ai-neon.vercel.app'],
+    methods:['GET','POST'],
+    Credentials:true
+}));
 app.use(express.urlencoded({ extended: true }));
 dotenv.config();
 const PORT = process.env.PORT;
