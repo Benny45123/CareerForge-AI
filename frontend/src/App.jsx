@@ -5,6 +5,7 @@ import './App.css'
 import RouteComponent from './components/RouteComponent.jsx';
 import { postData } from './services/BackendHandler.js';
 import userlogo from './assets/human.png';
+import Register from './pages/Auth.jsx';
 function App() {
   const [isOpen,setIsOpen]=useState(true);
   const slideMenu=()=>{
