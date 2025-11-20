@@ -7,7 +7,7 @@ import Auth from './pages/Auth.jsx'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-    <Auth/>
+    <App/>
     </BrowserRouter>
   </StrictMode>,
 )
