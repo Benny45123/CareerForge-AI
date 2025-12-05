@@ -7,7 +7,7 @@ const postData=async ({data,token}) =>{
     formData.append('recruiterDesignation', data.designation);
     formData.append('companyName', data.companyName);
     try {
-        const response = await fetch('http://localhost:3120/api/cover-letter/generate-cover-letter', {
+        const response = await fetch('/api/cover-letter/generate-cover-letter', {
             method: 'POST',
             body: formData,
             headers: {
@@ -24,7 +24,7 @@ const postData=async ({data,token}) =>{
 const Register=async ({name,email,password}) =>{
     const data={name,email,password};
     try {
-        const response = await fetch('http://localhost:3120/api/register', {
+        const response = await fetch('/api/register', {
             method: 'POST',
             body: JSON.stringify(data),
             credentials:'include',
@@ -42,7 +42,7 @@ const Register=async ({name,email,password}) =>{
 const Login =async ({email,password})=>{
     const data={email,password};
     try {
-        const response =await fetch('http://localhost:3120/api/login',{
+        const response =await fetch('/api/login',{
             method:'POST',
             body: JSON.stringify(data),
             credentials:'include',
