@@ -1,6 +1,7 @@
 const User =require('../models/userSchema');
 const bcrypt = require('bcryptjs');
 const jwt=require('jsonwebtoken');
+require('dotenv').config();
 const SECRET_KEY=process.env.SECRET_KEY;
 const registerUser=async(req,res)=>{
     const {name,email,password}=req.body;
@@ -49,6 +50,6 @@ const authenticateToken=(req,res,next)=>{
         }
         req.user=user;
         next();
-    })
+    });
 }
 module.exports={registerUser,loginUser,authenticateToken};

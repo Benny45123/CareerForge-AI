@@ -1,4 +1,4 @@
-const postData=async (data) =>{
+const postData=async ({data,token}) =>{
     const formData = new FormData();
     formData.append('jobDescription', data.jobDescription);
     formData.append('skillsFocus', data.skills);
@@ -7,9 +7,12 @@ const postData=async (data) =>{
     formData.append('recruiterDesignation', data.designation);
     formData.append('companyName', data.companyName);
     try {
-        const response = await fetch('/api/cover-letter/generate-cover-letter', {
+        const response = await fetch('http://localhost:3120/api/cover-letter/generate-cover-letter', {
             method: 'POST',
-            body: formData
+            body: formData,
+            headers: {
+                'authorization': `Bearer ${token}`
+            }
         })
         const result = await response.json();
         console.log('Success:', result.coverLetter);
@@ -18,4 +21,41 @@ const postData=async (data) =>{
         console.error('Error:', error);
     }
 }
-export {postData};
+const Register=async ({name,email,password}) =>{
+    const data={name,email,password};
+    try {
+        const response = await fetch('http://localhost:3120/api/register', {
+            method: 'POST',
+            body: JSON.stringify(data),
+            credentials:'include',
+            headers:{
+                "Content-Type":"application/json"
+            },
+        })
+        const result = await response.json();
+        console.log('Success:', result.message);
+    }
+    catch (error) {
+        console.error('Error:', error);
+    }
+}
+const Login =async ({email,password})=>{
+    const data={email,password};
+    try {
+        const response =await fetch('http://localhost:3120/api/login',{
+            method:'POST',
+            body: JSON.stringify(data),
+            credentials:'include',
+            headers:{
+                "Content-Type":"application/json"
+            },
+        })
+        const result =await response.json();
+        const {token}=result;
+        return token;
+    }
+    catch(error){
+        console.error('Error:',error);
+    }
+}
+export {postData,Register,Login};

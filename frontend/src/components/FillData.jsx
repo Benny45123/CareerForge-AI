@@ -20,9 +20,9 @@ const FillData = ({isOpen,getFormData}) => {
   }
     return (
     <>
-    <div style={{ marginLeft: isOpen ? "25%" : "0",height:'70vh',overflowY:"auto" }}className="transition-all duration-300 md:w-3/4 h-full bg-gray-200 p-4 ">
+    <div style={{ marginLeft: isOpen ? "25%" : "0" }}className="transition-all duration-300 md:w-3/4 h-full bg-gray-200 p-4 ">
     <div className='bg-white p-6 rounded-2xl shadow-md'>
-      <h1 className='font-bold '>Generate your Cover Letter </h1>
+      <h1 className='font-bold text-center pb-5'>Generate your Cover Letter </h1>
       <br />
       <h1 className='font-semibold'>Content:</h1>
       <br/>
@@ -42,20 +42,20 @@ const FillData = ({isOpen,getFormData}) => {
     </div>
       </div>
      <br/></div>
-     <div style={{ marginLeft: isOpen ? "25%" : "0",height:"30vh",top: "7.5rem" }}className="transition-all duration-300 md:w-3/4 bg-gray-200 h-full p-4 ">
+     <div style={{ marginLeft: isOpen ? "25%" : "0",top: "7.5rem" }}className="transition-all duration-300 md:w-3/4 bg-gray-200 h-full p-4 ">
       <div className='bg-white p-4 rounded-2xl shadow-md mb-10'>
       
         <label className="font-bold">To:</label>
         <br/><br/>
-        <label className='mr-30'>Recruiter Name *</label>
-        <label className='mr-15'>Recruiter Designation *</label>
-        <label className='ml-5'>Company Name *</label>
-        <br/>
+        <div className='grid  md:grid-cols-3 gap-4'>
+        <label className=''>Recruiter Name *</label>
+        <label className=''>Recruiter Designation *</label>
+        <label className=''>Company Name *</label>
         <input ref={recruiterName} type='text' className='focus:outline-none border border-gray-300 h-10 rounded-md p-2 mr-1' placeholder='Recruiter Name'required/>
         <input ref={designation} type='text' className='focus:outline-none border border-gray-300 h-10 rounded-md p-2 mr-1' placeholder='Designation'required/>
         <input ref={companyName} type='text' className='focus:outline-none border border-gray-300 h-10 rounded-md p-2 ml-1' placeholder='Company Name'required/><br /><br/>
         <br/>
-        </div>
+        </div></div>
         <button onClick={handleClick} className='bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md'>Generate Cover Letter</button>
       </div>
         </>
