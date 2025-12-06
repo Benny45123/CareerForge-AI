@@ -2,8 +2,9 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const dotenv = require( "dotenv");
-const { registerUser, loginUser ,authenticateToken } = require("./services/Authentication.js");
+const { registerUser, loginUser ,authenticateToken,userSearch} = require("./services/Authentication.js");
 const app = express();
+const cookieParser=require('cookie-parser');
 const coverLetterRoute = require("./routes/coverLetterRoute.js");
 app.use(express.json());
 dotenv.config();
@@ -12,6 +13,7 @@ app.use(cors({
     methods:['GET','POST'],
     credentials:true
 }));
+app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 const PORT = process.env.PORT;
 const MONGO_URI = process.env.MONGO_URI;
@@ -20,7 +22,29 @@ app.post('/api/register',registerUser);
 app.post('/api/login',loginUser);
 app.use(authenticateToken);
 app.use('/api/cover-letter',coverLetterRoute.router);
+app.get('/api/user',async (req,res)=>{
+    try{
+    const userId=req.user.id;
+    const user=await userSearch(userId);
+    res.status(200).json({user:{id:user._id,name:user.name,email:user.email}});
+    }
+    catch(err){
+        res.status(500).json({message:"Something went wrong"});
+    }
+    
+});
+app.post('/api/logout',(req,res)=>{
+    res.clearCookie('token',{
+        httpOnly:true,
+        sameSite:"Lax",
+        secure:true,
+    });
+    res.status(200).json({message:"Logout successful"});
+})
 app.get('/api',(req, res) => {
     res.send('API is running...');
 })
+app.listen(PORT, () => {
+    console.log(`app is running on port ${PORT}`);
+});
 module.exports =  app ;

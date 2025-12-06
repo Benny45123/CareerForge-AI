@@ -36,20 +36,33 @@ const loginUser=async(req,res)=>{
         return res.status(400).json({message:"Invalid credentials"});
     }
     const token=jwt.sign({id:isUser._id},SECRET_KEY,{expiresIn:"1h"});
-    res.status(200).json({token,user: {id:User._id,name:User.name,email:User.email}});
+    // res.status(200).json({token,user: {id:User._id,name:User.name,email:User.email}});
+    res.cookie('token',String(token),{
+        httpOnly:true,
+        sameSite:"Lax",
+        secure:true,
+        maxAge:60*60*1000,
+    });
+    res.status(200).json({message:"Login successful"});
 }
 const authenticateToken=(req,res,next)=>{
-    const authHeader=req.headers['authorization'];
-    const token=authHeader && authHeader.split(' ')[1];
+    // const authHeader=req.headers['authorization'];
+    // const token=authHeader && authHeader.split(' ')[1];
+    const token=req.cookies.token;
     if(!token){
         return res.status(401).json({message:"Access denied (no token provided)"});
     }
-    jwt.verify(token,SECRET_KEY,(err,user)=>{
-        if(err){
-            return res.status(403).json({message:"Invalid token"});
-        }
-        req.user=user;
+    try{
+        const decoded=jwt.verify(token,SECRET_KEY);
+        req.user=decoded;
         next();
-    });
+    }
+    catch(err){
+        return res.status(403).json({message:"Invalid token"});
+    }
 }
-module.exports={registerUser,loginUser,authenticateToken};
+const userSearch=async (id)=>{
+    const user=await User.findById(id).select('-password');
+    return user;
+}
+module.exports={registerUser,loginUser,authenticateToken,userSearch};

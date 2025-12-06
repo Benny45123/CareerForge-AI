@@ -1,4 +1,4 @@
-const postData=async ({data,token}) =>{
+const postData=async ({data}) =>{
     const formData = new FormData();
     formData.append('jobDescription', data.jobDescription);
     formData.append('skillsFocus', data.skills);
@@ -10,9 +10,7 @@ const postData=async ({data,token}) =>{
         const response = await fetch('/api/cover-letter/generate-cover-letter', {
             method: 'POST',
             body: formData,
-            headers: {
-                'authorization': `Bearer ${token}`
-            }
+            credentials:'include'
         })
         const result = await response.json();
         console.log('Success:', result.coverLetter);
@@ -44,18 +42,56 @@ const Login =async ({email,password})=>{
     try {
         const response =await fetch('/api/login',{
             method:'POST',
-            body: JSON.stringify(data),
             credentials:'include',
+            body: JSON.stringify(data),
             headers:{
-                "Content-Type":"application/json"
+                "Content-Type":"application/json",
             },
         })
         const result =await response.json();
-        const {token}=result;
-        return token;
+        if(response.ok){
+            console.log('Success:', result.message);
+            return true;
+        }
+        else{
+            throw new Error(result.message);
+        }
     }
     catch(error){
         console.error('Error:',error);
     }
 }
-export {postData,Register,Login};
+const checkLogin=async({setUser})=>{
+    try{
+      const response=await fetch('/api/user',{
+        method:'GET',
+        credentials:'include',
+      });
+      if(response.ok){
+        const data=await response.json();
+        console.log(data);
+        setUser(data.user);
+      }
+    }
+    catch(error){
+      console.error('Error:',error);
+      
+    }
+  }
+
+  const handleLogout=async ({setUser})=>{
+    try{
+      const response=await fetch('/api/logout',{
+        method:'POST',
+        credentials:'include',
+      });
+      if(response.ok){
+        setUser(null);
+        window.location.reload();
+      }
+    }
+    catch(error){
+      console.error('Error:',error);
+    }
+  }
+export {postData,Register,Login,checkLogin,handleLogout};  

@@ -1,6 +1,6 @@
 import logo from '../assets/CareerForgeAI.png'
 import {NavLink} from 'react-router-dom'
-import userlogo from '../assets/human.png'
+
 const NavBar=({isOpen}) => {
     return(<>
     {isOpen &&

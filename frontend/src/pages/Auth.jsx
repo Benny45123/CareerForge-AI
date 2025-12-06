@@ -1,6 +1,6 @@
 import {  useRef, useState } from "react";
 import {Register,Login} from "../services/BackendHandler.js";
-const Auth=({getToken}) =>{
+const Auth=({}) =>{
     const email=useRef();
     const password=useRef();
     const name=useRef();
@@ -22,8 +22,10 @@ const Auth=({getToken}) =>{
         e.preventDefault();
         const emailVal = email.current.value;
         const passwordVal = password.current.value;
-        const value =await Login({email:emailVal,password:passwordVal});
-        getToken(value);
+        const result=await Login({email:emailVal,password:passwordVal});
+        if(result){
+            window.location.reload();
+        }   
     }
     return (
         <>
