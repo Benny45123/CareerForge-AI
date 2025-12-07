@@ -35,13 +35,13 @@ const loginUser=async(req,res)=>{
     if(!isPasswordCorrect){
         return res.status(400).json({message:"Invalid credentials"});
     }
-    const token=jwt.sign({id:isUser._id},SECRET_KEY,{expiresIn:"1h"});
+    const token=jwt.sign({id:isUser._id},SECRET_KEY,{expiresIn:"1d"});
     // res.status(200).json({token,user: {id:User._id,name:User.name,email:User.email}});
     res.cookie('token',String(token),{
         httpOnly:true,
         sameSite:"Lax",
         secure:true,
-        maxAge:60*60*1000,
+        maxAge:24*60*60*1000,
     });
     res.status(200).json({message:"Login successful"});
 }

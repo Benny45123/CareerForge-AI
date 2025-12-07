@@ -43,7 +43,7 @@ function App() {
           </div>
         </div>
       </div>
-      <div style={{opacity: hovered ? '1.0' : '0.0'}} className='absolute border border-gray-300  rounded-3xl right-1/80  flex flex-col p-2 bg-white hover:shadow-lg transition-opacity duration-300  w-70'onMouseEnter={() => {hovered&&setHovered(true)}} onMouseLeave={() => setHovered(false)}>
+      <div style={{opacity: hovered ? '1.0' : '0.0'}} className='absolute border border-gray-300  rounded-3xl right-1/80  flex flex-col p-2 bg-white hover:shadow-2xl transition-opacity duration-300  w-70'onMouseEnter={() => {hovered&&setHovered(true)}} onMouseLeave={() => setHovered(false)}>
           <div className='flex flex-col items-center justify-center p-3 space-y-3'>
           <img src={userlogo} className="rounded-full  h-12 w-12" />
           <span className='text-2xl font-extrabold'>{user.name}</span>
@@ -63,7 +63,8 @@ function App() {
      </div>
      
     </div>
-    <RouteComponent getFormData={getFormData} isOpen={isOpen}/>
+    <div style={{ marginLeft: isOpen ? "25%" : "0" }}className="transition-all duration-300 md:w-3/4 h-2 bg-gray-200 p-4 "></div>
+    <RouteComponent  getFormData={getFormData} isOpen={isOpen}/>
     </>
   )
 }

@@ -1,0 +1,59 @@
+import previewImage from '../assets/cv-preview1.png';
+import previewImage2 from '../assets/cv-preview2.jpg';
+import previewImage3 from '../assets/cv-preview3.jpg';
+import previewImage4 from '../assets/cv-preview4.jpg';
+import previewImage5 from '../assets/cv-preview5.jpg';
+import previewImage6 from '../assets/cv-preview6.png';
+const SelectDesign = ({ isOpen }) => {
+    const sampleCoverLetter=`Dear Bhargav,
+
+I am writing to express my strong interest in the Full Stack Developer position at Amazon. As a Computer Science and Engineering student specializing in IoT, Cybersecurity, and Blockchain Technology, I am eager to apply my skills and contribute to innovative projects at your company.
+
+My experience with the MERN stack, particularly React and Node.js, aligns well with the requirements of this role. I have practical experience building scalable websites using APIs, as demonstrated by my personal portfolio website project, where I utilized HTML, CSS, JavaScript, and React to create a clean and performant site. Furthermore, my familiarity with Git for version control ensures I can seamlessly integrate into a collaborative development environment.
+
+Beyond my technical skills, I possess a strong foundation in Data Structures, Database Management, and Object-Oriented Programming with Java. I am confident that my academic background, combined with my hands-on project experience, makes me a well-rounded candidate for this opportunity. I am eager to learn new technologies and contribute to meaningful projects at Amazon.
+
+Thank you for considering my application. I am excited about the possibility of discussing my qualifications further.
+
+Sincerely,
+
+B. Benny Hinn`
+  return (
+<div style={{marginLeft : isOpen ? '25%' : '0'}} className="transition-all duration-300 md:w-3/4 h-full bg-gray-200 p-4 ">
+    <div className='bg-white p-6 rounded-2xl shadow-md'>
+        <h1 className='font-bold text-center pb-5'>Select Your Design</h1>
+        <br />
+        <div className='grid md:grid-cols-3 gap-4 m-2'>
+          <div className='border border-gray-300 rounded-lg p-4 hover:shadow-md shadow-cyan-400'>
+            <h2 className='font-semibold text-center mb-2'>Design 1</h2>
+            <div className=' flex items-center justify-center'><img src={previewImage}/></div>
+          </div>
+          <div className='border border-gray-300 rounded-lg p-4 hover:shadow-md shadow-fuchsia-400'>
+            <h2 className='font-semibold text-center mb-2'>Design 2</h2>
+            <div className='flex items-center justify-center'><img src={previewImage2}/></div>
+          </div>
+          <div className='border border-gray-300 rounded-lg p-4 hover:shadow-md shadow-purple-400'>
+            <h2 className='font-semibold text-center mb-2'>Design 3</h2>
+            <div className=' flex items-center justify-center'><img src={previewImage3}/></div>
+          </div>
+        </div>
+    <div className='grid md:grid-cols-3 gap-4 m-2'>
+        <div className='border border-gray-300 rounded-lg p-4 hover:shadow-md shadow-rose-400'>
+            <h2 className='font-semibold text-center mb-2'>Design 4</h2>
+            <div className=' flex items-center justify-center'><img src={previewImage4}/></div>
+        </div>
+        <div className='border border-gray-300 rounded-lg p-4 hover:shadow-md shadow-indigo-400'>
+            <h2 className='font-semibold text-center mb-2'>Design 5</h2>
+            <div className=' flex items-center justify-center'><img src={previewImage5}/></div>
+        </div>
+        <div className='border border-gray-300 rounded-lg p-4 hover:shadow-md shadow-emerald-400'>
+            <h2 className='font-semibold text-center mb-2'>Design 6</h2>
+            <div className=' flex items-center justify-center'><img src={previewImage6}/></div>
+        </div>
+    </div>
+    <button className='mt-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md'>Confirm Design</button>
+</div>
+</div>
+  );
+}
+export default SelectDesign;
