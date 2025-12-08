@@ -7,10 +7,18 @@ import { postData } from './services/BackendHandler.js';
 import userlogo from './assets/user.png';
 import Auth from './pages/Auth.jsx';
 import { checkLogin,handleLogout } from './services/BackendHandler.js';
+import Design1 from './components/Design1.jsx';
+import Design2 from './components/Design2.jsx';
+import Design3 from './components/Design3.jsx';
+import Design4 from './components/Design4.jsx';
+import Design5 from './components/Design5.jsx';
+import Design6 from './components/Design6.jsx';
 function App() {
-  const [isOpen,setIsOpen]=useState(null);
+  const [isOpen,setIsOpen]=useState(false);
   const [hovered,setHovered]=useState(false);
   const [user,setUser]=useState(false);
+  const [selectedDesign, setSelectedDesign] = useState(null);
+  // selectedDesign&&console.log("Selected Design in App.jsx:",selectedDesign);
   const slideMenu=()=>{
     setIsOpen(!isOpen);
   }
@@ -64,7 +72,20 @@ function App() {
      
     </div>
     <div style={{ marginLeft: isOpen ? "25%" : "0" }}className="transition-all duration-300 md:w-3/4 h-2 bg-gray-200 p-4 "></div>
-    <RouteComponent  getFormData={getFormData} isOpen={isOpen}/>
+    <RouteComponent  getFormData={getFormData} isOpen={isOpen} setIsOpen={setIsOpen} setSelectedDesign={setSelectedDesign}/>
+    <div style={{ marginLeft: '75%' }}className="transition-all duration-300 md:w-1/4 h-20  p-4 top-100 fixed flex items-center justify-center ">
+      <div className='bg-white p-6 rounded-2xl shadow-2xl w-80 h-auto border border-gray-300'>
+        {selectedDesign ? <h1 className='font-bold text-center pb-5'>Selected Design Preview</h1> :  <h1 className='font-bold text-center pb-5'>No Design Selected</h1>}
+        <br />
+        
+        {selectedDesign==1&&    <div className='overflow-auto  max-h-[450px] max-w-[250px] border border-gray-200 shadow-md'><Design1 /></div>}
+        {selectedDesign==2&&    <div className='overflow-auto max-h-[450px] max-w-[250px]'><Design2 /></div>}
+        {selectedDesign==3&&    <div className='overflow-auto max-h-[450px] max-w-[250px]'><Design3 /></div>}
+        {selectedDesign==4&&    <div className='overflow-auto max-h-[450px] max-w-[250px]'><Design4 /></div>}
+        {selectedDesign==5&&    <div className='overflow-auto max-h-[450px] max-w-[250px]'><Design5 /></div>}
+        {selectedDesign==6&&    <div className='overflow-auto max-h-[450px] max-w-[250px]'><Design6 /></div>}
+      </div> 
+    </div>
     </>
   )
 }

@@ -1,7 +1,7 @@
 import {Route,Routes } from "react-router-dom";
 import FillData from "./FillData.jsx";
 import SelectDesign from "./SelectDesign.jsx";
-const RouteComponent=({isOpen,getFormData})=>{
+const RouteComponent=({isOpen,getFormData,setIsOpen,setSelectedDesign})=>{
     return(
             <Routes>
                 <Route path="/" element={<></>}/>
@@ -11,7 +11,7 @@ const RouteComponent=({isOpen,getFormData})=>{
                 <Route path="/help" element={<></>}/>
                 <Route path="/settings" element={<></>}/>
                 <Route path="/fillin" element={<FillData isOpen={isOpen} getFormData={getFormData}/>}/>
-                <Route path="/select-design" element={<SelectDesign isOpen={isOpen}/>}/>
+                <Route path="/select-design" element={<SelectDesign isOpen={isOpen} setIsOpen={setIsOpen} setSelectedDesign={setSelectedDesign}/>}/>
             </Routes>
     );
 }

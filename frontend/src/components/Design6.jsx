@@ -1,0 +1,77 @@
+const Design6 =()=>{
+    return (
+        <>
+    <div className="max-w-[210mm] min-h-[297mm] mx-auto my-10 bg-white shadow-xl border border-gray-200 relative overflow-hidden">
+      
+      {/* ⬆️ Gradient Header Section */}
+      {/* The gradient colors mimic the pink/magenta to orange/yellow transition */}
+      <div className="bg-gradient-to-r from-pink-600  to-orange-500 text-white p-8">
+        
+        {/* Top Right: Name and Title */}
+        <div className="text-right mb-10">
+          <h1 className="text-3xl font-bold uppercase tracking-wider">ANTHONY SANTORO</h1>
+          <p className="text-lg opacity-90 mt-1">Digital Marketing Manager</p>
+        </div>
+        <div className="w-full  mx-auto mb-6 border-t-2 border-white"></div>
+        {/* Contact Details Line */}
+        <div className="flex justify-between items-center text-sm mt-8 pb-4">
+          <div className="text-center w-1/5">
+            <p className="font-bold">Phone</p>
+            <p className="text-sm">(860) 256-1414</p>
+          </div>
+          <div className="text-center w-1/5">
+            <p className="font-bold">Address</p>
+            <p className="text-sm">Dalton, CT</p>
+          </div>
+          <div className="text-center w-2/5">
+            <p className="font-bold">Email</p>
+            <p className="text-sm">anthony.santoro@email.com</p>
+          </div>
+          <div className="text-center w-1/5">
+            <p className="font-bold">Linkedin</p>
+            <p className="text-sm">linkedin.com/in/anthony-santoro/</p>
+          </div>
+        </div>
+      </div>
+
+      {/* ✍️ Main Letter Content Section */}
+      <div className="p-12 pt-8 text-gray-800">
+        
+        {/* Recipient Address Block */}
+        <div className="mb-8 text-sm leading-relaxed">
+          <h3 className="font-bold">Riley Harris</h3>
+          <p>18 Shelter Rock Rd</p>
+          <p>Danbury, CT 06811</p>
+          <p>(203) 028-3946</p>
+          <p>riley.harris@email.com</p>
+        </div>
+
+        <p className="mb-6 text-sm">Dear Riley Harris,</p>
+
+        {/* Content Paragraphs */}
+        <p className="mb-4 leading-relaxed text-sm">
+          As an experienced digital marketing manager with a track record of success, I'm excited to apply for the position of Digital Marketing Manager at Limitless. During my five years in the field, I have honed my skills in developing and implementing effective digital marketing strategies that drive business growth.
+        </p>
+
+        <p className="mb-4 leading-relaxed text-sm">
+          In my previous role at MetroPlus, I achieved a **32% increase in website traffic** through a combination of SEO optimization, targeted social media advertising, and email marketing campaigns. Additionally, I oversaw the launch of a new mobile app that resulted in a **48% increase in downloads** within the first six months.
+        </p>
+
+        <p className="mb-12 leading-relaxed text-sm">
+          I'm passionate about staying up-to-date with the latest trends and technologies in the digital marketing space, and Limitless' innovative approach to marketing is what inspired me to apply. I'm confident my experience managing teams and collaborating with cross-functional stakeholders to achieve business objectives makes me an ideal candidate for the role.
+        </p>
+
+        <p className="text-sm">Thank you for considering my application. I look forward to further discussing my qualifications and how I can help your business to continue to thrive in marketing is what inspired me to apply.</p>
+
+        {/* Signature Block */}
+        <div className="mt-10">
+          <p className="text-sm">Sincerely,</p>
+          <p className="text-lg font-bold uppercase mt-1">ANTHONY SANTORO</p>
+        </div>
+
+      </div>
+    </div>
+        </>
+    )
+}
+export default Design6;

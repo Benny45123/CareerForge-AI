@@ -27,6 +27,21 @@ const coverLetterSchema=new mongoose.Schema({
     generatedLetter:{
         type:String,
     },
+    email:{
+        type:String,
+    },
+    phone:{
+        type:String,
+    },
+    linkedin:{
+        type:String,
+    },
+    role:{
+        type:String,
+    },
+    name:{
+        type:String,
+    },
     createdAt:{
         type:Date,
         default:Date.now
