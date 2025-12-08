@@ -5,19 +5,18 @@ const Design5 =()=>{
         <>
         <div className="max-w-[210mm] min-h-[297mm] mx-auto my-10 bg-white shadow-xl border border-gray-200 relative overflow-hidden">
       
-      {/* ⬆️ Dark Header Section (Full Width) */}
+
       <div className={`text-white ${HEADER_BG} p-6`}>
         <div className="flex justify-between items-center">
           
-          {/* Left: Name and Title */}
+
           <div>
             <h1 className="text-3xl font-bold mb-1 text-yellow-600">Eleanor Vance</h1>
             <p className="text-lg opacity-90">Principal UX/UI Designer</p>
           </div>
 
-          {/* Right: Contact Icons/Details */}
           <div className="flex space-x-6 text-sm">
-            {/* Placeholder for icons (e.g., mail, phone, linkedin) */}
+
             <p className="flex items-center">
               <span className="mr-1">📧</span> email
             </p>
@@ -32,13 +31,12 @@ const Design5 =()=>{
         </div>
       </div>
 
-      {/* Horizontal Accent Line */}
       <div className={`h-1 ${ACCENT_COLOR} -mt-0.5`}></div>
 
-      {/* ✍️ Main Letter Content Section */}
+
       <div className="p-12 pt-10 text-gray-800">
         
-        {/* Date and Recipient Block (Split) */}
+
         <div className="flex justify-between items-start text-sm mb-10">
             <p>[Date]</p>
             <div className="text-right space-y-1">
@@ -48,7 +46,7 @@ const Design5 =()=>{
             </div>
         </div>
 
-        {/* Content Paragraphs */}
+
         <p className="mb-4 leading-relaxed text-sm">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, elsm eeryidsmet tuinru ecbibunt ut boren a .aliqua, eeninclusii ut vibcetn. Vels eacit iit nad em iquit in endlore miom alqua.
         </p>
@@ -61,10 +59,10 @@ const Design5 =()=>{
             Lorem ipsum dolor sit amet, consectetetusr adipiipiscing elit, elittur eepridsmet tutareinisint utlore nd migm alibtreat clnslit rispir int velseqas na tiornna máqua cilorl mrgna at ulzerre ex alittuiva hioe vellwelem cniare aitue snmi. El rersidólore cõnsectiore Dilatun e extr veftiiriin eus puanat, hist ut forneistula alio es e vett giat poreeciaate nd iai des nejeccuunndd enfeat ex conslrnm, ent calprea ad inioireen ent vest conirofemtt n ud a fu atum.
         </p>
 
-        {/* Signature Block */}
+
         <div className="mt-10">
           <p className="text-sm">Sincerely</p>
-          {/* Placeholder for signature image */}
+
           <div className="text-sm font-semibold mt-1">
              [Signature] 
           </div>

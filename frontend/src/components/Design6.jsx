@@ -3,17 +3,13 @@ const Design6 =()=>{
         <>
     <div className="max-w-[210mm] min-h-[297mm] mx-auto my-10 bg-white shadow-xl border border-gray-200 relative overflow-hidden">
       
-      {/* ⬆️ Gradient Header Section */}
-      {/* The gradient colors mimic the pink/magenta to orange/yellow transition */}
       <div className="bg-gradient-to-r from-pink-600  to-orange-500 text-white p-8">
         
-        {/* Top Right: Name and Title */}
         <div className="text-right mb-10">
           <h1 className="text-3xl font-bold uppercase tracking-wider">ANTHONY SANTORO</h1>
           <p className="text-lg opacity-90 mt-1">Digital Marketing Manager</p>
         </div>
         <div className="w-full  mx-auto mb-6 border-t-2 border-white"></div>
-        {/* Contact Details Line */}
         <div className="flex justify-between items-center text-sm mt-8 pb-4">
           <div className="text-center w-1/5">
             <p className="font-bold">Phone</p>
@@ -34,10 +30,8 @@ const Design6 =()=>{
         </div>
       </div>
 
-      {/* ✍️ Main Letter Content Section */}
       <div className="p-12 pt-8 text-gray-800">
-        
-        {/* Recipient Address Block */}
+
         <div className="mb-8 text-sm leading-relaxed">
           <h3 className="font-bold">Riley Harris</h3>
           <p>18 Shelter Rock Rd</p>
@@ -48,7 +42,6 @@ const Design6 =()=>{
 
         <p className="mb-6 text-sm">Dear Riley Harris,</p>
 
-        {/* Content Paragraphs */}
         <p className="mb-4 leading-relaxed text-sm">
           As an experienced digital marketing manager with a track record of success, I'm excited to apply for the position of Digital Marketing Manager at Limitless. During my five years in the field, I have honed my skills in developing and implementing effective digital marketing strategies that drive business growth.
         </p>
@@ -63,7 +56,6 @@ const Design6 =()=>{
 
         <p className="text-sm">Thank you for considering my application. I look forward to further discussing my qualifications and how I can help your business to continue to thrive in marketing is what inspired me to apply.</p>
 
-        {/* Signature Block */}
         <div className="mt-10">
           <p className="text-sm">Sincerely,</p>
           <p className="text-lg font-bold uppercase mt-1">ANTHONY SANTORO</p>
