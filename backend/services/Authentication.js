@@ -36,7 +36,6 @@ const loginUser=async(req,res)=>{
         return res.status(400).json({message:"Invalid credentials"});
     }
     const token=jwt.sign({id:isUser._id,name:isUser.name,email:isUser.email},SECRET_KEY,{expiresIn:"1d"});
-    console.log("Generated Token:", token);
     // res.status(200).json({token,user: {id:User._id,name:User.name,email:User.email}});
     res.cookie('token',String(token),{
         httpOnly:true,

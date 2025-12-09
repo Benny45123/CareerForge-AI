@@ -46,7 +46,7 @@ const Register=async ({name,email,password}) =>{
 const Login =async ({email,password})=>{
     const data={email,password};
     try {
-        const response =await fetch('/api/login',{
+        const response =await fetch('http://localhost:3120/api/login',{
             method:'POST',
             credentials:'include',
             body: JSON.stringify(data),
@@ -69,7 +69,7 @@ const Login =async ({email,password})=>{
 }
 const checkLogin=async({setUser})=>{
     try{
-      const response=await fetch('/api/user',{
+      const response=await fetch('http://localhost:3120/api/user',{
         method:'GET',
         credentials:'include',
       });
@@ -87,7 +87,7 @@ const checkLogin=async({setUser})=>{
 
   const handleLogout=async ({setUser})=>{
     try{
-      const response=await fetch('/api/logout',{
+      const response=await fetch('http://localhost:3120/api/logout',{
         method:'POST',
         credentials:'include',
       });
@@ -102,7 +102,7 @@ const checkLogin=async({setUser})=>{
   }
   const getCoverLetters=async ({setCoverLetterData})=>{
     try{
-      const response=await fetch('/api/cover-letter/user/cover-letters',{
+      const response=await fetch('http://localhost:3120/api/cover-letter/user/cover-letters',{
         method:'GET',
         credentials:'include',
       })

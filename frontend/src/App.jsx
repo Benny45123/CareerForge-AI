@@ -29,8 +29,12 @@ function App() {
   }
   useEffect(()=>{
   checkLogin({setUser});
-  getCoverLetters({setCoverLetterData});
 },[]);
+  useEffect(()=>{
+    if(user){
+      getCoverLetters({setCoverLetterData});
+    }
+  },[user]);
   
   if(!user){
     return <Auth />
