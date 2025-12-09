@@ -1,46 +1,37 @@
-const Design6 =()=>{
+const Design6 =({data})=>{
+
     return (
         <>
-    <div className="max-w-[210mm] min-h-[297mm] mx-auto my-10 bg-white shadow-xl border border-gray-200 relative overflow-hidden">
+    <div className="max-w-[210mm] min-h-[297mm]  my-10 bg-white shadow-xl border border-gray-200 relative overflow-hidden">
       
       <div className="bg-gradient-to-r from-pink-600  to-orange-500 text-white p-8">
         
         <div className="text-right mb-10">
-          <h1 className="text-3xl font-bold uppercase tracking-wider">ANTHONY SANTORO</h1>
-          <p className="text-lg opacity-90 mt-1">Digital Marketing Manager</p>
+          <h1 className="text-3xl font-bold uppercase tracking-wider">{data.name}</h1>
+          <p className="text-lg opacity-90 mt-1">{data.role}</p>
         </div>
         <div className="w-full  mx-auto mb-6 border-t-2 border-white"></div>
         <div className="flex justify-between items-center text-sm mt-8 pb-4">
           <div className="text-center w-1/5">
             <p className="font-bold">Phone</p>
-            <p className="text-sm">(860) 256-1414</p>
+            <p className="text-sm">{data.phone}</p>
           </div>
-          <div className="text-center w-1/5">
-            <p className="font-bold">Address</p>
-            <p className="text-sm">Dalton, CT</p>
-          </div>
+
           <div className="text-center w-2/5">
             <p className="font-bold">Email</p>
-            <p className="text-sm">anthony.santoro@email.com</p>
+            <p className="text-sm">{data.email}</p>
           </div>
           <div className="text-center w-1/5">
             <p className="font-bold">Linkedin</p>
-            <p className="text-sm">linkedin.com/in/anthony-santoro/</p>
+            <p className="text-sm">{data.linkedin}</p>
           </div>
         </div>
       </div>
 
       <div className="p-12 pt-8 text-gray-800">
 
-        <div className="mb-8 text-sm leading-relaxed">
-          <h3 className="font-bold">Riley Harris</h3>
-          <p>18 Shelter Rock Rd</p>
-          <p>Danbury, CT 06811</p>
-          <p>(203) 028-3946</p>
-          <p>riley.harris@email.com</p>
-        </div>
 
-        <p className="mb-6 text-sm">Dear Riley Harris,</p>
+        {/* <p className="mb-6 text-sm">Dear Riley Harris,</p>
 
         <p className="mb-4 leading-relaxed text-sm">
           As an experienced digital marketing manager with a track record of success, I'm excited to apply for the position of Digital Marketing Manager at Limitless. During my five years in the field, I have honed my skills in developing and implementing effective digital marketing strategies that drive business growth.
@@ -59,8 +50,8 @@ const Design6 =()=>{
         <div className="mt-10">
           <p className="text-sm">Sincerely,</p>
           <p className="text-lg font-bold uppercase mt-1">ANTHONY SANTORO</p>
-        </div>
-
+        </div> */}
+        <p className="whitespace-pre-line text-sm leading-relaxed">{data.generatedLetter}</p>
       </div>
     </div>
         </>

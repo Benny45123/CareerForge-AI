@@ -1,5 +1,10 @@
 const mongoose=require('mongoose');
 const coverLetterSchema=new mongoose.Schema({
+    userId:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"User",
+        required:true
+    },
     jobDescription:{
         type:String,
         required:true

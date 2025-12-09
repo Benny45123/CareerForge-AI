@@ -1,3 +1,5 @@
+
+
 const postData=async ({data}) =>{
     const formData = new FormData();
     formData.append('jobDescription', data.jobDescription);
@@ -13,7 +15,10 @@ const postData=async ({data}) =>{
             credentials:'include'
         })
         const result = await response.json();
-        console.log('Success:', result);
+        if (result){
+            window.location.reload();
+        }
+        return result;
 
     }
     catch (error) {
@@ -70,7 +75,7 @@ const checkLogin=async({setUser})=>{
       });
       if(response.ok){
         const data=await response.json();
-        console.log(data);
+        // console.log(data);
         setUser(data.user);
       }
     }
@@ -95,4 +100,24 @@ const checkLogin=async({setUser})=>{
       console.error('Error:',error);
     }
   }
-export {postData,Register,Login,checkLogin,handleLogout};  
+  const getCoverLetters=async ({setCoverLetterData})=>{
+    try{
+      const response=await fetch('/api/cover-letter/user/cover-letters',{
+        method:'GET',
+        credentials:'include',
+      })
+      if(response.ok){
+        const data=await response.json();
+        console.log(data);
+        if(data.coverLetters && data.coverLetters.length>0){
+          setCoverLetterData(data.coverLetters[0]);
+          console.log('Cover letters fetched successfully');
+          
+        }
+      }
+    }
+    catch(error){
+      console.error('Error:',error);
+    }
+  }
+export {postData,Register,Login,checkLogin,handleLogout,getCoverLetters};  

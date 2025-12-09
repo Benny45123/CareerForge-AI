@@ -119,6 +119,7 @@ Additional JSON rules:
     }
     const {coverLetter,email,phone,linkedin,role,name}=parsedOutput;
         const saved=await CoverLetter.create({
+            userId:req.user.id,
             jobDescription,
             skillsFocus,
             resumeText,
@@ -133,7 +134,6 @@ Additional JSON rules:
             name
         });
         res.status(200).json({
-            success:true,
             coverLetter,
             email,
             phone,
@@ -148,4 +148,17 @@ Additional JSON rules:
         res.status(500).json({error:"Failed to generate cover letter"});
     }
 }
-module.exports={generateCoverLetter};
+const getUserCoverLetters=async (req,res)=>{
+    try{
+        const userId=req.user.id;
+        const userName=req.user.name;
+        const email=req.user.email;
+        const letters=await CoverLetter.find({userId}).populate("userId","name email").sort({createdAt:-1});
+        res.status(200).json({coverLetters:letters,user:{id:userId,name:userName,email}});
+    }
+    catch(err){
+        console.error("Error fetching cover letters:",err);
+        res.status(500).json({error:"Failed to fetch cover letters"});
+    }
+}
+module.exports={generateCoverLetter,getUserCoverLetters};

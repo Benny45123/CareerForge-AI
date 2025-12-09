@@ -1,4 +1,5 @@
-const Design5 =()=>{
+const Design5 =({data})=>{
+
     const HEADER_BG = 'bg-gray-800'; // Dark Blue/Gray for the header
   const ACCENT_COLOR = 'bg-yellow-600'
     return (
@@ -6,25 +7,25 @@ const Design5 =()=>{
         <div className="max-w-[210mm] min-h-[297mm] mx-auto my-10 bg-white shadow-xl border border-gray-200 relative overflow-hidden">
       
 
-      <div className={`text-white ${HEADER_BG} p-6`}>
+      <div className={`text-white ${HEADER_BG} p-10`}>
         <div className="flex justify-between items-center">
           
 
           <div>
-            <h1 className="text-3xl font-bold mb-1 text-yellow-600">Eleanor Vance</h1>
-            <p className="text-lg opacity-90">Principal UX/UI Designer</p>
+            <h1 className="text-3xl font-bold mb-1 text-yellow-600">{data.name}</h1>
+            <p className="text-lg opacity-90">{data.role}</p>
           </div>
 
           <div className="flex space-x-6 text-sm">
 
             <p className="flex items-center">
-              <span className="mr-1">📧</span> email
+              <span className="mr-1">📧</span>  {data.email}
             </p>
             <p className="flex items-center">
-              <span className="mr-1">📞</span> phone
+              <span className="mr-1">📞</span> {data.phone}
             </p>
-            <p className="flex items-center">
-              <span className="mr-1">🔗</span> linkedin
+            <p className="flex items-center max-w-xs ">
+              <span className="mr-1">🔗</span>{data.linkedin}
             </p>
           </div>
 
@@ -36,9 +37,9 @@ const Design5 =()=>{
 
       <div className="p-12 pt-10 text-gray-800">
         
-
+{/* 
         <div className="flex justify-between items-start text-sm mb-10">
-            <p>[Date]</p>
+            <p></p>
             <div className="text-right space-y-1">
                 <p>[Hiring Manager Name]</p>
                 <p>[Company Name]</p>
@@ -67,7 +68,8 @@ const Design5 =()=>{
              [Signature] 
           </div>
           <p className="text-lg font-bold">Eleanor Vance</p>
-        </div>
+        </div> */}
+        <p className="whitespace-pre-line text-sm leading-relaxed">{data.generatedLetter}</p>
 
       </div>
     </div>

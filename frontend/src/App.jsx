@@ -3,7 +3,7 @@ import NavBar from './pages/NavBar.jsx'
 import { Link } from 'react-router-dom'
 import './App.css'
 import RouteComponent from './components/RouteComponent.jsx';
-import { postData } from './services/BackendHandler.js';
+import { getCoverLetters, postData } from './services/BackendHandler.js';
 import userlogo from './assets/user.png';
 import Auth from './pages/Auth.jsx';
 import { checkLogin,handleLogout } from './services/BackendHandler.js';
@@ -18,15 +18,18 @@ function App() {
   const [hovered,setHovered]=useState(false);
   const [user,setUser]=useState(false);
   const [selectedDesign, setSelectedDesign] = useState(null);
+  const [coverLetterData,setCoverLetterData]=useState(null);
   // selectedDesign&&console.log("Selected Design in App.jsx:",selectedDesign);
+  // getCoverLetters({setCoverLetterData});
   const slideMenu=()=>{
     setIsOpen(!isOpen);
   }
   const getFormData=(data)=>{
-    postData({data});
+    const result=postData({data});
   }
   useEffect(()=>{
   checkLogin({setUser});
+  getCoverLetters({setCoverLetterData});
 },[]);
   
   if(!user){
@@ -51,7 +54,7 @@ function App() {
           </div>
         </div>
       </div>
-      <div style={{opacity: hovered ? '1.0' : '0.0'}} className='absolute border border-gray-300  rounded-3xl right-1/80  flex flex-col p-2 bg-white hover:shadow-2xl transition-opacity duration-300  w-70'onMouseEnter={() => {hovered&&setHovered(true)}} onMouseLeave={() => setHovered(false)}>
+      <div style={{opacity: hovered ? '1.0' : '0.0'}} className='absolute border border-gray-300  rounded-3xl right-1/80  flex flex-col p-2 bg-white hover:shadow-2xl transition-opacity duration-300  w-70 z-1'onMouseEnter={() => {hovered&&setHovered(true)}} onMouseLeave={() => setHovered(false)}>
           <div className='flex flex-col items-center justify-center p-3 space-y-3'>
           <img src={userlogo} className="rounded-full  h-12 w-12" />
           <span className='text-2xl font-extrabold'>{user.name}</span>
@@ -73,19 +76,20 @@ function App() {
     </div>
     <div style={{ marginLeft: isOpen ? "25%" : "0" }}className="transition-all duration-300 md:w-3/4 h-2 bg-gray-200 p-4 "></div>
     <RouteComponent  getFormData={getFormData} isOpen={isOpen} setIsOpen={setIsOpen} setSelectedDesign={setSelectedDesign}/>
+    {coverLetterData&&
     <div style={{ marginLeft: '75%' }}className="transition-all duration-300 md:w-1/4 h-20  p-4 top-100 fixed flex items-center justify-center ">
       <div className='bg-white p-6 rounded-2xl shadow-2xl w-80 h-auto border border-gray-300'>
         {selectedDesign ? <h1 className='font-bold text-center pb-5'>Selected Design Preview</h1> :  <h1 className='font-bold text-center pb-5'>No Design Selected</h1>}
         <br />
         
-        {selectedDesign==1&&    <div className='overflow-auto  max-h-[450px] max-w-[250px] border border-gray-200 shadow-md'><Design1 /></div>}
-        {selectedDesign==2&&    <div className='overflow-auto max-h-[450px] max-w-[250px]'><Design2 /></div>}
-        {selectedDesign==3&&    <div className='overflow-auto max-h-[450px] max-w-[250px]'><Design3 /></div>}
-        {selectedDesign==4&&    <div className='overflow-auto max-h-[450px] max-w-[250px]'><Design4 /></div>}
-        {selectedDesign==5&&    <div className='overflow-auto max-h-[450px] max-w-[250px]'><Design5 /></div>}
-        {selectedDesign==6&&    <div className='overflow-auto max-h-[450px] max-w-[250px]'><Design6 /></div>}
+        {selectedDesign==1&&    <div className='overflow-auto  max-h-[450px] w-[250px] border border-gray-200 shadow-md z-0'><Design1 data={coverLetterData}/></div>}
+        {selectedDesign==2&&    <div className='overflow-auto max-h-[450px] max-w-[250px] z-0'><Design2 data={coverLetterData}/></div>}
+        {selectedDesign==3&&    <div className='overflow-auto max-h-[450px] max-w-[250px] z-0'><Design3 data={coverLetterData}/></div>}
+        {selectedDesign==4&&    <div className='overflow-auto max-h-[450px] max-w-[250px] z-0'><Design4 data={coverLetterData}/></div>}
+        {selectedDesign==5&&    <div className='overflow-auto max-h-[450px] max-w-[250px] z-0'><Design5 data={coverLetterData}/></div>}
+        {selectedDesign==6&&    <div className='overflow-auto max-h-[450px] max-w-[300px] z-0'><Design6 data={coverLetterData}/></div>}
       </div> 
-    </div>
+    </div>}
     </>
   )
 }

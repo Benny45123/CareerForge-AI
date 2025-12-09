@@ -16,7 +16,7 @@ createRoot(document.getElementById('root')).render(
     {/* <Auth/> */}
     <App/>
     
-    {/* <Design6/> */}
+    {/* <Design1/> */}
     </BrowserRouter>
   </StrictMode>,
 )
