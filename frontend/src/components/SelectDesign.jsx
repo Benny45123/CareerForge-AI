@@ -9,7 +9,10 @@ const handleDesignSelect = ({design,setIsOpen,setSelectedDesign}) => {
   setIsOpen(false);
   setSelectedDesign(design);
 }
-const SelectDesign = ({ isOpen,setIsOpen,setSelectedDesign }) => {
+const handleConfirmDesign = ({selectedDesign,confirmDesign}) => {
+  confirmDesign(selectedDesign);
+}
+const SelectDesign = ({ isOpen,setIsOpen,setSelectedDesign,selectedDesign,confirmDesign}) => {
   return (
 <div style={{marginLeft : isOpen ? '25%' : '0'}} className="transition-all duration-300 md:w-3/4 h-full bg-gray-200 p-4 ">
     <div className='bg-white p-6 rounded-2xl shadow-md'>
@@ -43,7 +46,7 @@ const SelectDesign = ({ isOpen,setIsOpen,setSelectedDesign }) => {
             <div className=' flex items-center justify-center'><img src={previewImage6}/></div>
         </div>
     </div>
-    <button className='mt-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md'>Confirm Design</button>
+    <button onClick={()=>handleConfirmDesign({selectedDesign,confirmDesign})} className='mt-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md'>Confirm Design</button>
 </div>
 </div>
   );

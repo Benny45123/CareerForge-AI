@@ -1,9 +1,9 @@
-const Design3=({data})=>{
+const Design3=({data,designRef})=>{
     const PRIMARY_COLOR = 'bg-gray-800'; 
     const ACCENT_COLOR = 'bg-teal-500'; 
     return (
         <>
-    <div className="max-w-[210mm] min-h-[297mm] mx-auto my-10 bg-white shadow-xl border border-gray-200 relative overflow-hidden">
+    <div ref={designRef} className="w-[794px]  mx-auto   bg-white shadow-xl border border-gray-200 relative overflow-hidden">
       
 
       <div className="grid grid-cols-[30%_70%] h-full">
@@ -35,7 +35,7 @@ const Design3=({data})=>{
         </div>
 
 
-        <div className="p-10 text-gray-800">
+        <div className="pt-20 p-10 text-gray-800">
             
 
             {/* <div className="text-right text-xs mb-10 space-y-1">

@@ -1,10 +1,10 @@
-const Design5 =({data})=>{
+const Design5 =({data,designRef})=>{
 
     const HEADER_BG = 'bg-gray-800'; // Dark Blue/Gray for the header
   const ACCENT_COLOR = 'bg-yellow-600'
     return (
         <>
-        <div className="max-w-[210mm] min-h-[297mm] mx-auto my-10 bg-white shadow-xl border border-gray-200 relative overflow-hidden">
+        <div ref={designRef} className="w-[794px]  mx-auto  bg-white shadow-xl border border-gray-200 relative overflow-hidden">
       
 
       <div className={`text-white ${HEADER_BG} p-10`}>

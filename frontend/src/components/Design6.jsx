@@ -1,16 +1,16 @@
-const Design6 =({data})=>{
+const Design6 =({data,designRef})=>{
 
     return (
         <>
-    <div className="max-w-[210mm] min-h-[297mm]  my-10 bg-white shadow-xl border border-gray-200 relative overflow-hidden">
+    <div ref={designRef} className="w-[794px] mx-auto   bg-white shadow-xl border border-gray-200 relative overflow-hidden">
       
       <div className="bg-gradient-to-r from-pink-600  to-orange-500 text-white p-8">
         
         <div className="text-right mb-10">
           <h1 className="text-3xl font-bold uppercase tracking-wider">{data.name}</h1>
-          <p className="text-lg opacity-90 mt-1">{data.role}</p>
+          <p className="text-lg opacity-90 mt-1 ">{data.role}</p>
         </div>
-        <div className="w-full  mx-auto mb-6 border-t-2 border-white"></div>
+        <div className="w-full  mx-auto mb-6 border-t border-white"></div>
         <div className="flex justify-between items-center text-sm mt-8 pb-4">
           <div className="text-center w-1/5">
             <p className="font-bold">Phone</p>

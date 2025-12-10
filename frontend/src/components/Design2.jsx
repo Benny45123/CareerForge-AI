@@ -1,14 +1,14 @@
 
 
-const Design2 = ({data}) => {
+const Design2 = ({data,designRef}) => {
   return (
     
-    <div className="max-w-[210mm] min-h-[297mm] mx-auto my-10 p-12 bg-white shadow-xl border border-gray-200 text-gray-800">
+    <div ref={designRef} className="w-[794px] mx-auto  p-15 bg-white shadow-xl border border-gray-200 text-gray-800">
       <div className="mb-8">
         <h1 className="text-4xl font-bold mb-1">{data.name}</h1>
         <p className="text-xl mb-4">{data.role}</p>
 
-        <div className="border-t border-gray-400 mb-4"></div>
+        <div className="border border-gray-800  mb-5"></div>
         <div className="flex justify-between items-start text-sm">
           <div className="space-y-1">
             <p>Email: {data.email}</p>

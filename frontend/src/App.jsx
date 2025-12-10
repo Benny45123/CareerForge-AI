@@ -1,4 +1,6 @@
-import { useState,useEffect } from 'react'
+import { useState,useEffect,useRef } from 'react'
+import {toPng} from 'html-to-image';
+import jsPDF from 'jspdf';
 import NavBar from './pages/NavBar.jsx'
 import { Link } from 'react-router-dom'
 import './App.css'
@@ -35,6 +37,18 @@ function App() {
       getCoverLetters({setCoverLetterData});
     }
   },[user]);
+  const designRef=useRef();
+  const confirmDesign=async (design)=>{
+    if(!designRef.current){ return }
+    const printContent=designRef.current;
+    const imgData = await toPng(printContent, { quality: 1.0 ,pixelRatio: 2,cacheBust:true });
+    const pdf = new jsPDF('p', 'mm', 'a4');
+    const imgProps = pdf.getImageProperties(imgData);
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+    pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+    pdf.save(`${user.name}_Cover_Letter_${Date.now()}.pdf`);
+  };
   
   if(!user){
     return <Auth />
@@ -44,10 +58,14 @@ function App() {
     <>
     <div className=' '>
       <NavBar isOpen={isOpen}/>
-      <button onClick={slideMenu} style={{marginLeft: isOpen ? '20%' : '0' , top: !isOpen&&"0px"}} className="fixed mt-0.5 h-1/14 p-2 top-3 hover:bg-gray-300 bg-white rounded-md  w-15 "><i className="bi bi-list"></i></button>
+      <button onClick={slideMenu} style={{marginLeft: isOpen ? '20%' : '0' , top: !isOpen&&"0px"}} className="fixed mt-0.5 h-1/14 p-2 pl-5 top-3 hover:bg-gray-300 bg-white rounded-md  w-15 "><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gray" class="bi bi-list" viewBox="0 0 15 15">
+  <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+</svg></button>
       <div style={{ marginLeft: isOpen ? '25%' : '0' }} className="transition-all duration-300 p-4 border border-gray-200 h-15 flex items-center space-x-10 min-w-full overflow-y-auto overflow-x-hidden" >
         <div className=" bg-gray-200 ml-20 border border-gray-300 p-2 rounded w-35 h-8 align-middle  flex right-20 space-x-2 ">
-          <i className="bi bi-search flex top-0.5"></i>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gray" class="bi bi-search" viewBox="0 0 16 16">
+  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+</svg>
           <input type="text" placeholder='Search..' className='focus:outline-none w-full'/>
         </div>
         <div className="absolute border border-gray-300  rounded-3xl right-1/80 p-2 flex items-center space-x-2 h-15 bg-white hover:shadow-lg " onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
@@ -79,19 +97,19 @@ function App() {
      
     </div>
     <div style={{ marginLeft: isOpen ? "25%" : "0" }}className="transition-all duration-300 md:w-3/4 h-2 bg-gray-200 p-4 "></div>
-    <RouteComponent  getFormData={getFormData} isOpen={isOpen} setIsOpen={setIsOpen} setSelectedDesign={setSelectedDesign}/>
+    <RouteComponent  getFormData={getFormData} isOpen={isOpen} setIsOpen={setIsOpen} setSelectedDesign={setSelectedDesign} selectedDesign={selectedDesign} confirmDesign={confirmDesign}/>
     {coverLetterData&&
     <div style={{ marginLeft: '75%' }}className="transition-all duration-300 md:w-1/4 h-20  p-4 top-100 fixed flex items-center justify-center ">
       <div className='bg-white p-6 rounded-2xl shadow-2xl w-80 h-auto border border-gray-300'>
         {selectedDesign ? <h1 className='font-bold text-center pb-5'>Selected Design Preview</h1> :  <h1 className='font-bold text-center pb-5'>No Design Selected</h1>}
         <br />
         
-        {selectedDesign==1&&    <div className='overflow-auto  max-h-[450px] w-[250px] border border-gray-200 shadow-md z-0'><Design1 data={coverLetterData}/></div>}
-        {selectedDesign==2&&    <div className='overflow-auto max-h-[450px] max-w-[250px] z-0'><Design2 data={coverLetterData}/></div>}
-        {selectedDesign==3&&    <div className='overflow-auto max-h-[450px] max-w-[250px] z-0'><Design3 data={coverLetterData}/></div>}
-        {selectedDesign==4&&    <div className='overflow-auto max-h-[450px] max-w-[250px] z-0'><Design4 data={coverLetterData}/></div>}
-        {selectedDesign==5&&    <div className='overflow-auto max-h-[450px] max-w-[250px] z-0'><Design5 data={coverLetterData}/></div>}
-        {selectedDesign==6&&    <div className='overflow-auto max-h-[450px] max-w-[300px] z-0'><Design6 data={coverLetterData}/></div>}
+        {selectedDesign==1&&    <div className='overflow-auto  max-h-[450px] w-[250px] border border-gray-200 shadow-md z-0'><Design1 designRef={designRef} data={coverLetterData}/></div>}
+        {selectedDesign==2&&    <div className='overflow-auto max-h-[450px] max-w-[250px] z-0'><Design2 designRef={designRef} data={coverLetterData}/></div>}
+        {selectedDesign==3&&    <div className='overflow-auto max-h-[450px] max-w-[250px] z-0'><Design3 designRef={designRef} data={coverLetterData}/></div>}
+        {selectedDesign==4&&    <div className='overflow-auto max-h-[450px] max-w-[250px] z-0'><Design4 designRef={designRef} data={coverLetterData}/></div>}
+        {selectedDesign==5&&    <div className='overflow-auto max-h-[450px] max-w-[250px] z-0'><Design5 designRef={designRef} data={coverLetterData}/></div>}
+        {selectedDesign==6&&    <div className='overflow-auto max-h-[450px] max-w-[300px] z-0'><Design6 designRef={designRef} data={coverLetterData}/></div>}
       </div> 
     </div>}
     </>

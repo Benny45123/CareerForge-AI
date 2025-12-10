@@ -1,9 +1,9 @@
 
 
-const Design1 = ({data}) => {
+const Design1 = ({data,designRef}) => {
 
   return (
-        <div className="max-w-4xl mx-auto my-10 p-12 bg-white">
+        <div ref={designRef} className="w-[794px]  mx-auto m-10 p-10 bg-white">
           <div className="grid grid-cols-[1fr_2px_2.5fr] gap-x-6">
             <div className="pr-4">
               <h1 className="text-4xl font-bold mb-1">{data.name}</h1>

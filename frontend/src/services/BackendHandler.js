@@ -120,4 +120,5 @@ const checkLogin=async({setUser})=>{
       console.error('Error:',error);
     }
   }
+
 export {postData,Register,Login,checkLogin,handleLogout,getCoverLetters};  
