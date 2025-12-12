@@ -108,11 +108,32 @@ const checkLogin=async({setUser})=>{
       })
       if(response.ok){
         const data=await response.json();
-        console.log(data);
+        // console.log(data);
         if(data.coverLetters && data.coverLetters.length>0){
           setCoverLetterData(data.coverLetters[0]);
-          console.log('Cover letters fetched successfully');
-          
+          // console.log('Cover letters fetched successfully');
+          // return data;
+        }
+      }
+    }
+    catch(error){
+      console.error('Error:',error);
+    }
+  }
+  const getAllCoverLetters=async ()=>{
+    try{
+      const response=await fetch('/api/cover-letter/user/cover-letters',{
+        method:'GET',
+        credentials:'include',
+      })
+      if(response.ok){
+        const data=await response.json();
+        // console.log(data);
+        if(data.coverLetters && data.coverLetters.length>0){
+          // console.log('Cover letters fetched successfully');
+          // return data;
+          const coverLetters=data.coverLetters;
+          return coverLetters;
         }
       }
     }
@@ -121,4 +142,4 @@ const checkLogin=async({setUser})=>{
     }
   }
 
-export {postData,Register,Login,checkLogin,handleLogout,getCoverLetters};  
+export {postData,Register,Login,checkLogin,handleLogout,getCoverLetters,getAllCoverLetters};  

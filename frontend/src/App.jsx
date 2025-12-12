@@ -2,10 +2,10 @@ import { useState,useEffect,useRef } from 'react'
 import {toPng} from 'html-to-image';
 import jsPDF from 'jspdf';
 import NavBar from './pages/NavBar.jsx'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './App.css'
 import RouteComponent from './components/RouteComponent.jsx';
-import { getCoverLetters, postData } from './services/BackendHandler.js';
+import { getCoverLetters, postData,getAllCoverLetters} from './services/BackendHandler.js';
 import userlogo from './assets/user.png';
 import Auth from './pages/Auth.jsx';
 import { checkLogin,handleLogout } from './services/BackendHandler.js';
@@ -16,11 +16,13 @@ import Design4 from './components/Design4.jsx';
 import Design5 from './components/Design5.jsx';
 import Design6 from './components/Design6.jsx';
 function App() {
+  const navigate=useNavigate();
   const [isOpen,setIsOpen]=useState(false);
   const [hovered,setHovered]=useState(false);
   const [user,setUser]=useState(false);
   const [selectedDesign, setSelectedDesign] = useState(null);
   const [coverLetterData,setCoverLetterData]=useState(null);
+  const [AllCoverLetters,setAllCoverLetters]=useState(null);
   // selectedDesign&&console.log("Selected Design in App.jsx:",selectedDesign);
   // getCoverLetters({setCoverLetterData});
   const slideMenu=()=>{
@@ -49,6 +51,11 @@ function App() {
     pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
     pdf.save(`${user.name}_Cover_Letter_${Date.now()}.pdf`);
   };
+  const displayCoverLetters=async ()=>{
+    const data=await getAllCoverLetters();
+    setAllCoverLetters(data);
+    navigate('/displayCoverLetters');
+  }
   
   if(!user){
     return <Auth />
@@ -82,7 +89,7 @@ function App() {
           <span className='text-2xl font-extrabold'>{user.name}</span>
           <span className='text-gray-500'>{user.email}</span>
           </div>
-          <button className='hover:text-gray-400 pr-30 pt-2'>Cover-Letters</button>
+          <button className='hover:text-gray-400 pr-30 pt-2' onClick={()=>displayCoverLetters()}>Cover-Letters</button>
           <button className='hover:text-gray-400 pr-39 pt-2'>Resumes</button>
           <button className='hover:text-gray-400 pr-48 pt-2'>Jobs</button>
           <span className='text-gray-400'>______________________________________</span>
@@ -97,8 +104,8 @@ function App() {
      
     </div>
     <div style={{ marginLeft: isOpen ? "25%" : "0" }}className="transition-all duration-300 md:w-3/4 h-2 bg-gray-200 p-4 "></div>
-    <RouteComponent  getFormData={getFormData} isOpen={isOpen} setIsOpen={setIsOpen} setSelectedDesign={setSelectedDesign} selectedDesign={selectedDesign} confirmDesign={confirmDesign}/>
-    {coverLetterData&&
+    <RouteComponent  getFormData={getFormData} isOpen={isOpen} setIsOpen={setIsOpen} setSelectedDesign={setSelectedDesign} selectedDesign={selectedDesign} confirmDesign={confirmDesign} coverLetterData={AllCoverLetters}/>
+    {(selectedDesign&&coverLetterData)&&
     <div style={{ marginLeft: '75%' }}className="transition-all duration-300 md:w-1/4 h-20  p-4 top-100 fixed flex items-center justify-center ">
       <div className='bg-white p-6 rounded-2xl shadow-2xl w-80 h-auto border border-gray-300'>
         {selectedDesign ? <h1 className='font-bold text-center pb-5'>Selected Design Preview</h1> :  <h1 className='font-bold text-center pb-5'>No Design Selected</h1>}
