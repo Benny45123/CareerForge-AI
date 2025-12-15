@@ -20,6 +20,7 @@ function App() {
   const [isOpen,setIsOpen]=useState(false);
   const [hovered,setHovered]=useState(false);
   const [user,setUser]=useState(false);
+  const [loading,setLoading]=useState(true);
   const [selectedDesign, setSelectedDesign] = useState(null);
   const [coverLetterData,setCoverLetterData]=useState(null);
   const [AllCoverLetters,setAllCoverLetters]=useState(null);
@@ -37,8 +38,12 @@ function App() {
     window.location.reload();
   }
   useEffect(()=>{
-  checkLogin({setUser});
-},[]);
+    const fetchUser=async ()=>{
+      const currentUser=await checkLogin({setUser});
+      setLoading(false);
+    };
+
+fetchUser();},[]);
   useEffect(()=>{
     if(user){
       getCoverLetters({setCoverLetterData});
@@ -64,6 +69,9 @@ function App() {
   const displayCoverLetters=()=>{
     getAllCoverLetters();
     navigate('/displayCoverLetters');
+  }
+  if (loading){
+    return <div>Loading...</div>;
   }
   
   if(!user){
