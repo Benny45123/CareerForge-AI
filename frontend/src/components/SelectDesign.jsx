@@ -46,7 +46,9 @@ const SelectDesign = ({ isOpen,setIsOpen,setSelectedDesign,selectedDesign,confir
             <div className=' flex items-center justify-center'><img src={previewImage6}/></div>
         </div>
     </div>
+    <div className='flex justify-center pb-5'>
     <button onClick={()=>handleConfirmDesign({selectedDesign,confirmDesign})} className='mt-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md'>Confirm Design</button>
+    </div>
 </div>
 </div>
   );

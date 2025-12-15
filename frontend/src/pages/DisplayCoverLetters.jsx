@@ -3,7 +3,7 @@ const DisplayCoverLetters = ({coverLetters,isOpen}) => {
     // const coverLetters=coverLetterData.coverLetters;
     return (
         <>
-        <div style={{ marginLeft: isOpen ? "25%" : "0" }}className="transition-all duration-300 md:w-3/4 h-2 bg-gray-200 ">
+            <div style={{ marginLeft: isOpen ? "25%" : "0" }} className={`transition-all duration-300 h-2 bg-gray-200 p-4 ${isOpen ? "md:w-3/4" : "md:w-full"} min-h-screen`}>
             <div className="rounded-md bg-gray-200 p-6 shadow-md">
                 <h1 className="text-2xl font-bold mb-6 text-center">Your Cover Letters</h1>
                 {coverLetters && coverLetters.length>0 ? 
@@ -18,8 +18,10 @@ const DisplayCoverLetters = ({coverLetters,isOpen}) => {
                         ))
                     }  
                 </div>) : <div className="text-center text-gray-500">No cover letters found. Create one now!</div>}
+                <div className="flex justify-center">
+                <button onClick={() => window.history.back()} className='mt-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md '>Go Back</button>
+                </div>
             </div>
-            <button onClick={() => window.history.back()} className='mt-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md'>Go Back</button>
         </div>
         </>
     );

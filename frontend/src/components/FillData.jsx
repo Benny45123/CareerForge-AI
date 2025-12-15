@@ -7,7 +7,8 @@ const FillData = ({isOpen,getFormData}) => {
   const recruiterName=useRef('');
   const designation=useRef('');
   const companyName=useRef('');
-  const handleClick=()=>{
+  const handleClick=async(e)=>{
+    e.preventDefault();
     const data={
       jobDescription:jobDescription.current.value,
       skills:skills.current.value,
@@ -17,10 +18,12 @@ const FillData = ({isOpen,getFormData}) => {
       companyName:companyName.current.value
     };
     getFormData(data);
+
   }
     return (
     <>
-    <div style={{ marginLeft: isOpen ? "25%" : "0" }}className="transition-all duration-300 md:w-3/4 h-full bg-gray-200 p-4 ">
+    <form onSubmit={handleClick} style={{ marginLeft: isOpen ? "25%" : "0" }}className={`transition-all duration-300 ${isOpen? "md:w-3/4" : "md:w-full"} h-full bg-gray-200 p-4 `}>
+    <div>
     <div className='bg-white p-6 rounded-2xl shadow-md'>
       <h1 className='font-bold text-center pb-5'>Generate your Cover Letter </h1>
       <br />
@@ -28,11 +31,11 @@ const FillData = ({isOpen,getFormData}) => {
       <br/>
       <p>Paste the job description below *</p>
       <br/>
-      <textarea ref={jobDescription} className='focus:outline-none border border-gray-300 w-full h-1/4 rounded-md p-2' placeholder='Job Description...'></textarea>
+      <textarea ref={jobDescription} className='focus:outline-none border border-gray-300 w-full h-1/4 rounded-md p-2' placeholder='Job Description...' required></textarea>
       <br/><br/>
       <p>Which skills should be the focus?</p>
       <br />
-      <input ref={skills} type='text' className='focus:outline-none border border-gray-300 w-full h-10 rounded-md p-2' placeholder='Skills that should be highlihted'/>
+      <input ref={skills} type='text' className='focus:outline-none border border-gray-300 w-full h-10 rounded-md p-2' placeholder='Skills that should be highlihted' required/>
       <br />
       <h1 className='font-semibold mt-4'>Upload your Resume *</h1>
       <br />
@@ -42,7 +45,6 @@ const FillData = ({isOpen,getFormData}) => {
     </div>
       </div>
      <br/></div>
-     <div style={{ marginLeft: isOpen ? "25%" : "0",top: "7.5rem" }}className="transition-all duration-300 md:w-3/4 bg-gray-200 h-full p-4 ">
       <div className='bg-white p-4 rounded-2xl shadow-md mb-10'>
       
         <label className="font-bold">To:</label>
@@ -56,8 +58,10 @@ const FillData = ({isOpen,getFormData}) => {
         <input ref={companyName} type='text' className='focus:outline-none border border-gray-300 h-10 rounded-md p-2 ml-1' placeholder='Company Name'required/><br /><br/>
         <br/>
         </div></div>
-        <button onClick={handleClick} className='bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md'>Generate Cover Letter</button>
-      </div>
+        <div className='justify-center flex mb-10'>
+        <button type='submit' className='bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md'>Generate Cover Letter</button>
+        </div>
+      </form>
         </>
     )
 }

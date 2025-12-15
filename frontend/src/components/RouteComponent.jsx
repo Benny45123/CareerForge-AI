@@ -2,13 +2,15 @@ import {Route,Routes } from "react-router-dom";
 import FillData from "./FillData.jsx";
 import SelectDesign from "./SelectDesign.jsx";
 import DisplayCoverLetters from "../pages/DisplayCoverLetters.jsx";
-const RouteComponent=({isOpen,getFormData,setIsOpen,setSelectedDesign,selectedDesign,confirmDesign,coverLetterData})=>{
+import CoverLetterPage from "../pages/CoverLetterPage.jsx";
+import ResumePage from "../pages/ResumePage.jsx";
+const RouteComponent=({isOpen,getFormData,setIsOpen,setSelectedDesign,selectedDesign,confirmDesign,coverLetterData,displayCoverLetters})=>{
     // console.log("Cover letter data in RouteComponent.jsx:",coverLetterData);
     return(
             <Routes>
                 <Route path="/" element={<></>}/>
-                <Route path="/cover-letter" element={<></>}/>
-                <Route path="/resumes" element={<></>}/>
+                <Route path="/cover-letter" element={<CoverLetterPage isOpen={isOpen} displayCoverLetters={displayCoverLetters}/>}/>
+                <Route path="/resumes" element={<ResumePage isOpen={isOpen}/>}/>
                 <Route path="/jobs" element={<></>}/>
                 <Route path="/help" element={<></>}/>
                 <Route path="/settings" element={<></>}/>

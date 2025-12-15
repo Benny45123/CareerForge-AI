@@ -28,8 +28,13 @@ function App() {
   const slideMenu=()=>{
     setIsOpen(!isOpen);
   }
-  const getFormData=(data)=>{
-    const result=postData({data});
+  const getFormData=async(data)=>{
+    const result=await postData({data});
+    selectDesignPage();
+  }
+  const selectDesignPage=()=>{
+    navigate('/select-design');
+    window.location.reload();
   }
   useEffect(()=>{
   checkLogin({setUser});
@@ -37,13 +42,14 @@ function App() {
   useEffect(()=>{
     if(user){
       getCoverLetters({setCoverLetterData});
+      getAllCoverLetters1()
     }
   },[user]);
   const designRef=useRef();
-  const confirmDesign=async (design)=>{
+  const confirmDesign=async ()=>{
     if(!designRef.current){ return }
     const printContent=designRef.current;
-    const imgData = await toPng(printContent, { quality: 1.0 ,pixelRatio: 2,cacheBust:true });
+    const imgData = await toPng(printContent, { quality: 1.0 ,pixelRatio: 3,cacheBust:true });
     const pdf = new jsPDF('p', 'mm', 'a4');
     const imgProps = pdf.getImageProperties(imgData);
     const pdfWidth = pdf.internal.pageSize.getWidth();
@@ -51,9 +57,12 @@ function App() {
     pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
     pdf.save(`${user.name}_Cover_Letter_${Date.now()}.pdf`);
   };
-  const displayCoverLetters=async ()=>{
+  const getAllCoverLetters1=async ()=>{
     const data=await getAllCoverLetters();
     setAllCoverLetters(data);
+  }
+  const displayCoverLetters=()=>{
+    getAllCoverLetters();
     navigate('/displayCoverLetters');
   }
   
@@ -63,7 +72,7 @@ function App() {
   else{
   return (
     <>
-    <div className=' '>
+    <div className='overflow-hidden'>
       <NavBar isOpen={isOpen}/>
       <button onClick={slideMenu} style={{marginLeft: isOpen ? '20%' : '0' , top: !isOpen&&"0px"}} className="fixed mt-0.5 h-1/14 p-2 pl-5 top-3 hover:bg-gray-300 bg-white rounded-md  w-15 "><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gray" class="bi bi-list" viewBox="0 0 15 15">
   <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
@@ -95,16 +104,22 @@ function App() {
           <span className='text-gray-400'>______________________________________</span>
           <button onClick={()=>handleLogout({setUser})} className='hover:text-gray-400  p-3 '>Logout</button>
       </div>
-      <div style={{ marginLeft : isOpen ? '25%' :'0',overflowY:"auto"}}className="flex justify-middle  transition-all duration-300    space-x-5 md:w-3/4 bg-gray-200 overflow-auto h-full pl-4 pt-4 pr-4 top-15 h-15">
+      {/* <div style={{ marginLeft : isOpen ? '25%' :'0',overflowY:"auto"}}className="flex justify-middle  transition-all duration-300    space-x-5 md:w-3/4 bg-gray-200 overflow-auto h-full pl-4 pt-4 pr-4 top-15 h-15">
         <div className='flex items-center justify-center w-full h-full rounded-2xl bg-white p-4 shadow-md'>
         <Link to='/fillin' className='focus:outline-none hover:text-blue-600 font-semibold text-black  py-2 px-4 rounded-full mb-4 '>Fill in</Link>
         <Link to='/select-design' className='focus:outline-none hover:text-blue-600 font-semibold text-black  py-2 px-4 rounded-full mb-4 '>Select Design</Link>
         <Link to='/generate-cv' className='focus:outline-none hover:text-blue-600 font-semibold text-black  py-2 px-4 rounded-full mb-4 '>Generate CV</Link></div>
-     </div>
+     </div> */}
      
     </div>
-    <div style={{ marginLeft: isOpen ? "25%" : "0" }}className="transition-all duration-300 md:w-3/4 h-2 bg-gray-200 p-4 "></div>
-    <RouteComponent  getFormData={getFormData} isOpen={isOpen} setIsOpen={setIsOpen} setSelectedDesign={setSelectedDesign} selectedDesign={selectedDesign} confirmDesign={confirmDesign} coverLetterData={AllCoverLetters}/>
+    <div
+  style={{ marginLeft: isOpen ? "25%" : "0" }}
+  className={`transition-all duration-300 h-2 bg-gray-200 p-4 ${
+    isOpen ? "md:w-3/4" : "md:w-full"
+  }`}
+></div>
+
+    <RouteComponent  getFormData={getFormData} isOpen={isOpen} setIsOpen={setIsOpen} setSelectedDesign={setSelectedDesign} selectedDesign={selectedDesign} confirmDesign={confirmDesign} coverLetterData={AllCoverLetters} displayCoverLetters={displayCoverLetters}/>
     {(selectedDesign&&coverLetterData)&&
     <div style={{ marginLeft: '75%' }}className="transition-all duration-300 md:w-1/4 h-20  p-4 top-100 fixed flex items-center justify-center ">
       <div className='bg-white p-6 rounded-2xl shadow-2xl w-80 h-auto border border-gray-300'>
