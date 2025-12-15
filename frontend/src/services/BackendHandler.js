@@ -74,10 +74,15 @@ const checkLogin=async({setUser})=>{
         const data=await response.json();
         // console.log(data);
         setUser(data.user);
+        return data.user;;
+      }
+      else{
+        return null
       }
     }
     catch(error){
       console.error('Error:',error);
+      return null;
       
     }
   }
