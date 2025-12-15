@@ -5,6 +5,7 @@
     ],
     "routes": [
       { "src": "/api/(.*)", "dest": "backend/app.js" },
+      {"src":"/assets/(.*)","dest":"frontend/assets/$1"},
       { "src": "/(.*)", "dest": "frontend/index.html" }
     ]
   }
