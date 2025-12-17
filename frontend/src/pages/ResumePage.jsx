@@ -1,5 +1,5 @@
 import {useRef} from "react";
-import ResumePageLogo from '../assets/resumePageLogo.png';
+import ResumePageLogo from '../assets/ResumePageLogo.png';
 const ResumePage=({isOpen})=>{
     const resumeFileRef=useRef(null);
     const handleDivClick=(e)=>{
