@@ -10,7 +10,7 @@ const CoverLetterPage = ({isOpen,displayCoverLetters}) => {
         <>
             <div style={{ marginLeft: isOpen ? "25%" : "0" }} className={`transition-all duration-300 h-2 bg-gray-200 p-4 ${isOpen ? "md:w-3/4" : "md:w-full"} min-h-screen`}>
                     <div onClick={handleNewCoverLetter} className={`relative ${isOpen ? "md:w-[100%]" : "md:w-full"} h-56 flex flex-col items-center justify-center gap-4 rounded-2xl bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 backdrop-blur-xl shadow-md transition-all duration-300 ease-out hover:scale-[1.02] hover:shadow-violet-500 hover:border-blue-400 cursor-pointer`}>
-                        <div className="absolute inset-0 rounded-2xl bg-blue-500/5 blur-xl"></div>
+                        <div className="absolute inset-0 rounded-2xl "></div>
 
                           <img src={newCvImg} alt="New Cover Letter" className="h-24 w-24 object-contain drop-shadow-2xl drop-shadow-cyan-300"/>
 

@@ -120,12 +120,6 @@ fetchUser();},[]);
      </div> */}
      
     </div>
-    <div
-  style={{ marginLeft: isOpen ? "25%" : "0" }}
-  className={`transition-all duration-300 h-2 bg-gray-200 p-4 ${
-    isOpen ? "md:w-3/4" : "md:w-full"
-  }`}
-></div>
 
     <RouteComponent  getFormData={getFormData} isOpen={isOpen} setIsOpen={setIsOpen} setSelectedDesign={setSelectedDesign} selectedDesign={selectedDesign} confirmDesign={confirmDesign} coverLetterData={AllCoverLetters} displayCoverLetters={displayCoverLetters}/>
     {(selectedDesign&&coverLetterData)&&
