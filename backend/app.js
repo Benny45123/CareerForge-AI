@@ -6,6 +6,7 @@ const { registerUser, loginUser ,authenticateToken,userSearch} = require("./serv
 const app = express();
 const cookieParser=require('cookie-parser');
 const coverLetterRoute = require("./routes/coverLetterRoute.js");
+const resumeRoute = require("./routes/ResumeCheckerRoute.js");
 app.use(express.json());
 dotenv.config();
 app.use(cors({
@@ -22,6 +23,7 @@ app.post('/api/register',registerUser);
 app.post('/api/login',loginUser);
 app.use(authenticateToken);
 app.use('/api/cover-letter',coverLetterRoute.router);
+app.use('/api/resume/',resumeRoute.router);
 app.get('/api/user',async (req,res)=>{
     try{
     const userId=req.user.id;

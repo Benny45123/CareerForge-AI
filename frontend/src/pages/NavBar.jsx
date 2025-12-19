@@ -1,23 +1,18 @@
-import logo from '../assets/CareerForgeAI.png'
+
 import {NavLink} from 'react-router-dom'
 
 const NavBar=({isOpen}) => {
-    return(<>
-    {isOpen &&
+    return(
         <>
-          <div className="md:w-1/4 fixed top-10 left-0 h-screen border-solid border-gray-300 p-4 space-y-6 transition-all duration-300 bg-white rounded-2xl ">
-            
-            <div className="router-logo  p-2  flex items-center  space-x-5 mb-10 w-1/4 h-1/13 fixed  top-3 left-0">
-              <img src={logo} alt="App Logo" className="h-12 w-12 rounded-full" />
-              <h1 className="text text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-violet-500 text-shadow-md">CareerForge AI</h1></div>
-            <NavLink to="/" className="route mt-30 text-center ">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gray" class="bi bi-house" viewBox="0 0 16 16">
+    <div className={`md:w-1/4 fixed top-15 left-0 h-screen border-r border-gray-300 p-4 space-y-6 bg-white shadow-md transition-transform duration-300 ease-in-out ${isOpen ? "translate-x-0" : "-translate-x-full"}`}>
+      <NavLink to="/" className="route mt-20 text-center ">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gray" class="bi bi-house" viewBox="0 0 16 16">
   <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/>
 </svg>
-              <p className="text-gray-500 font- mb-4">Home</p>
-            </NavLink>
-            <NavLink to='/cover-letter' className="route ">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gray" class="bi bi-card-text" viewBox="0 0 16 16">
+        <p className="text-gray-500 font- mb-4">Home</p>
+      </NavLink>
+      <NavLink to='/cover-letter' className="route ">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gray" class="bi bi-card-text" viewBox="0 0 16 16">
   <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z"/>
   <path d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8m0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5"/>
 </svg>
@@ -49,7 +44,6 @@ const NavBar=({isOpen}) => {
               <p className="text-gray-500 font- mb-4">Settings</p>
             </NavLink>
           </div>
-        </>}
     </>);
 }
 export default NavBar;

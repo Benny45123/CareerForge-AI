@@ -120,12 +120,6 @@ Additional JSON rules:
     const {coverLetter,email,phone,linkedin,role,name}=parsedOutput;
         const saved=await CoverLetter.create({
             userId:req.user.id,
-            jobDescription,
-            skillsFocus,
-            resumeText,
-            recruiterName,
-            recruiterDesignation,
-            companyName,
             generatedLetter:coverLetter,
             email,
             phone,

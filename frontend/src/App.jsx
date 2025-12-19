@@ -1,4 +1,6 @@
 import { useState,useEffect,useRef } from 'react'
+import logo from './assets/CareerForgeAI.png'
+import logo2 from './assets/CareerForge-Ai.png'
 import {toPng} from 'html-to-image';
 import jsPDF from 'jspdf';
 import NavBar from './pages/NavBar.jsx'
@@ -82,11 +84,14 @@ fetchUser();},[]);
     <>
     <div className='overflow-hidden'>
       <NavBar isOpen={isOpen}/>
-      <button onClick={slideMenu} style={{marginLeft: isOpen ? '20%' : '0' , top: !isOpen&&"0px"}} className="fixed mt-0.5 h-1/14 p-2 pl-5 top-3 hover:bg-gray-300 bg-white rounded-md  w-15 "><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gray" class="bi bi-list" viewBox="0 0 15 15">
+      <button onClick={slideMenu} className="fixed mt-0.5 h-1/14 p-2 pl-5  hover:bg-gray-300 bg-white rounded-md  w-15 "><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gray" class="bi bi-list" viewBox="0 0 15 15">
   <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
 </svg></button>
-      <div style={{ marginLeft: isOpen ? '25%' : '0' }} className="transition-all duration-300 p-4 border border-gray-200 h-15 flex items-center space-x-10 min-w-full overflow-y-auto overflow-x-hidden" >
-        <div className=" bg-gray-200 ml-20 border border-gray-300 p-2 rounded w-35 h-8 align-middle  flex right-20 space-x-2 ">
+      <div  className="transition-all duration-300 p-4 border-b border-gray-300 h-15 flex items-center space-x-10 min-w-full" >
+      <div className='flex flex-row m-10'>
+          <img src={logo2} className='h-65 w-65 -translate-y-[105px]'/>
+      </div>
+        <div className=" bg-gray-200 ml-20 border border-gray-300 p-2 rounded w-35 h-8 align-middle  flex right-20 space-x-2 translate-x-150 ">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gray" class="bi bi-search" viewBox="0 0 16 16">
   <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
 </svg>

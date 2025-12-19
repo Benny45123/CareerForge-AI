@@ -5,30 +5,6 @@ const coverLetterSchema=new mongoose.Schema({
         ref:"User",
         required:true
     },
-    jobDescription:{
-        type:String,
-        required:true
-    },
-    skillsFocus:{
-        type:String,
-        required:true
-    },
-    resumeText:{
-        type:String,
-        required:true
-    },
-    recruiterName:{
-        type:String,
-        required:true,
-    },
-    recruiterDesignation:{
-        type:String,
-        required:true,
-    },
-    companyName:{
-        type:String,
-        required:true,
-    },
     generatedLetter:{
         type:String,
     },

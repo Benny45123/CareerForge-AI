@@ -143,5 +143,23 @@ const checkLogin=async({setUser})=>{
       console.error('Error:',error);
     }
   }
+  const postResumeData=async ({data}) =>{
+    const formData = new FormData();
+    formData.append('jobDescription', data.jobDescription);
+    formData.append('resume', data.resume);
+    try {
+      const response = await fetch('/api/resume/analyze-resume', {
+          method: 'POST',
+          body: formData,
+          credentials:'include'
+      });
+      const result = await response.json();
+      console.log(result);
+      return result;
+    }
+    catch (error) {
+        console.error('Error:', error);
+    }
+  }
 
-export {postData,Register,Login,checkLogin,handleLogout,getCoverLetters,getAllCoverLetters};  
+export {postData,Register,Login,checkLogin,handleLogout,getCoverLetters,getAllCoverLetters,postResumeData};  
