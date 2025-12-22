@@ -161,5 +161,21 @@ const checkLogin=async({setUser})=>{
         console.error('Error:', error);
     }
   }
+  const getAllResumes=async ()=>{
+    try{
+      const response=await fetch('/api/resume/user/resumes',{
+        method:'GET',
+        credentials:'include',
+      })
+      if(response.ok){
+        const data=await response.json();
+        console.log(data);
+        return data;
+    }
+  }
+    catch(error){
+      console.error('Error:',error);
+    }
+  }
 
-export {postData,Register,Login,checkLogin,handleLogout,getCoverLetters,getAllCoverLetters,postResumeData};  
+export {postData,Register,Login,checkLogin,handleLogout,getCoverLetters,getAllCoverLetters,postResumeData,getAllResumes};  

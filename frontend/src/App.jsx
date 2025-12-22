@@ -7,7 +7,7 @@ import NavBar from './pages/NavBar.jsx'
 import { Link, useNavigate } from 'react-router-dom'
 import './App.css'
 import RouteComponent from './components/RouteComponent.jsx';
-import { getCoverLetters, postData,getAllCoverLetters} from './services/BackendHandler.js';
+import { getCoverLetters, postData,getAllCoverLetters, getAllResumes} from './services/BackendHandler.js';
 import userlogo from './assets/user.png';
 import Auth from './pages/Auth.jsx';
 import { checkLogin,handleLogout } from './services/BackendHandler.js';
@@ -26,6 +26,7 @@ function App() {
   const [selectedDesign, setSelectedDesign] = useState(null);
   const [coverLetterData,setCoverLetterData]=useState(null);
   const [AllCoverLetters,setAllCoverLetters]=useState(null);
+  const [allResumes,setAllResumes]=useState(null);
   // selectedDesign&&console.log("Selected Design in App.jsx:",selectedDesign);
   // getCoverLetters({setCoverLetterData});
   const slideMenu=()=>{
@@ -36,7 +37,7 @@ function App() {
     selectDesignPage();
   }
   const selectDesignPage=()=>{
-    navigate('/select-design');
+    navigate('/cover-letter/select-design');
     window.location.reload();
   }
   useEffect(()=>{
@@ -49,7 +50,8 @@ fetchUser();},[]);
   useEffect(()=>{
     if(user){
       getCoverLetters({setCoverLetterData});
-      getAllCoverLetters1()
+      getAllCoverLetters1();
+      getAllResumes1();
     }
   },[user]);
   const designRef=useRef();
@@ -69,8 +71,18 @@ fetchUser();},[]);
     setAllCoverLetters(data);
   }
   const displayCoverLetters=()=>{
-    getAllCoverLetters();
+    getAllCoverLetters1();
     navigate('/displayCoverLetters');
+  }
+  const getAllResumes1=async ()=>{
+    const data=await getAllResumes();
+    console.log("All resumes data in App.jsx:",data);
+    setAllResumes(data);
+    console.log("All resumes state in App.jsx:",allResumes);
+  }
+  const DisplayResumes=()=>{
+    getAllResumes1();
+    navigate('/displayResumes');
   }
   if (loading){
     return <div>Loading...</div>;
@@ -84,14 +96,14 @@ fetchUser();},[]);
     <>
     <div className='overflow-hidden'>
       <NavBar isOpen={isOpen}/>
-      <button onClick={slideMenu} className="fixed mt-0.5 h-1/14 p-2 pl-5  hover:bg-gray-300 bg-white rounded-md  w-15 "><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gray" class="bi bi-list" viewBox="0 0 15 15">
+      <button onClick={slideMenu} className="fixed mt-0.5 h-1/14 p-5 hover:bg-gray-300 bg-white rounded-md   "><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gray" class="bi bi-list" viewBox="0 0 15 15">
   <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
 </svg></button>
-      <div  className="transition-all duration-300 p-4 border-b border-gray-300 h-15 flex items-center space-x-10 min-w-full" >
+      <div  className=" p-4 border-b border-gray-300 h-15 flex items-center space-x-10 min-w-full" >
       <div className='flex flex-row m-10'>
           <img src={logo2} className='h-65 w-65 -translate-y-[105px]'/>
       </div>
-        <div className=" bg-gray-200 ml-20 border border-gray-300 p-2 rounded w-35 h-8 align-middle  flex right-20 space-x-2 translate-x-150 ">
+        <div className=" bg-gray-200 ml-20 border border-gray-300 p-2 rounded w-35 h-8 align-middle  flex right-20 space-x-2 translate-x-130 ">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gray" class="bi bi-search" viewBox="0 0 16 16">
   <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
 </svg>
@@ -112,7 +124,7 @@ fetchUser();},[]);
           <span className='text-gray-500'>{user.email}</span>
           </div>
           <button className='hover:text-gray-400 pr-30 pt-2' onClick={()=>displayCoverLetters()}>Cover-Letters</button>
-          <button className='hover:text-gray-400 pr-39 pt-2'>Resumes</button>
+          <button className='hover:text-gray-400 pr-39 pt-2' onClick={()=>DisplayResumes()}>Resumes</button>
           <button className='hover:text-gray-400 pr-48 pt-2'>Jobs</button>
           <span className='text-gray-400'>______________________________________</span>
           <button onClick={()=>handleLogout({setUser})} className='hover:text-gray-400  p-3 '>Logout</button>
@@ -126,7 +138,7 @@ fetchUser();},[]);
      
     </div>
 
-    <RouteComponent  getFormData={getFormData} isOpen={isOpen} setIsOpen={setIsOpen} setSelectedDesign={setSelectedDesign} selectedDesign={selectedDesign} confirmDesign={confirmDesign} coverLetterData={AllCoverLetters} displayCoverLetters={displayCoverLetters}/>
+    <RouteComponent  getFormData={getFormData} isOpen={isOpen} setIsOpen={setIsOpen} setSelectedDesign={setSelectedDesign} selectedDesign={selectedDesign} confirmDesign={confirmDesign} coverLetterData={AllCoverLetters} displayCoverLetters={displayCoverLetters} allResumes={allResumes}/>
     {(selectedDesign&&coverLetterData)&&
     <div style={{ marginLeft: '75%' }}className="transition-all duration-300 md:w-1/4 h-20  p-4 top-100 fixed flex items-center justify-center ">
       <div className='bg-white p-6 rounded-2xl shadow-2xl w-80 h-auto border border-gray-300'>

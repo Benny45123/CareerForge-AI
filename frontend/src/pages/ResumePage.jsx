@@ -34,7 +34,7 @@ const ResumePage=({isOpen})=>{
     }
     return (
         <>
-            <div  className={`transition-all duration-300 h-2 bg-gray-200 p-4 ${isOpen ? "md:w-3/4 ml-[25%]" : "md:w-full ml-0"} h-full`}>
+            <div  className={`transition-all duration-500 h-2 bg-gray-200 p-4 ${isOpen ? "md:w-3/4 ml-[25%]" : "md:w-full ml-0"} h-full`}>
                 <div className="rounded-md bg-[#f2f1f1] p-7 shadow-md">
                 <h1 className="text-7xl font-semibold text-center mb-4">Resume Score Checker</h1>
                     <div className="flex flex-row">
