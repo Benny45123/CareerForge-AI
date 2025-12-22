@@ -2,7 +2,6 @@ import {Route,Routes } from "react-router-dom";
 import FillData from "./FillData.jsx";
 import SelectDesign from "./SelectDesign.jsx";
 import DisplayCoverLetters from "../pages/DisplayCoverLetters.jsx";
-import CoverLetterPage from "../pages/CoverLetterPage.jsx";
 import ResumePage from "../pages/ResumePage.jsx";
 import DisplayResumes from "../pages/DisplayResumes.jsx";
 const RouteComponent=({isOpen,getFormData,setIsOpen,setSelectedDesign,selectedDesign,confirmDesign,coverLetterData,displayCoverLetters,allResumes})=>{
