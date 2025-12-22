@@ -9,7 +9,6 @@ const RouteComponent=({isOpen,getFormData,setIsOpen,setSelectedDesign,selectedDe
     return(
             <Routes>
                 <Route path="/" element={<></>}/>
-                <Route path="/cover-letter" element={<CoverLetterPage isOpen={isOpen} displayCoverLetters={displayCoverLetters}/>}/>
                 <Route path="/resumes" element={<ResumePage isOpen={isOpen}/>}/>
                 <Route path="/jobs" element={<></>}/>
                 <Route path="/help" element={<></>}/>
