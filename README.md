@@ -1,87 +1,80 @@
-# CareerForge-AI
-CareerForge-AI 🚀
+# CareerForge AI 🚀
 
-An AI-powered cover letter generator and job application assistant built with React and the Gemini API.
+**CareerForge AI** is an intelligent job application assistant that helps candidates craft high-impact cover letters and optimize their applications using the power of the **Gemini API**. It features a modern, responsive UI with glassmorphism elements and deep integration with Google Search grounding for accurate company research.
 
-CareerForge-AI is a modern web application designed to streamline and accelerate the job application process. It goes beyond simple text editing by leveraging the Google Gemini API to intelligently craft tailored cover letters, find recipient information, and help you put your best foot forward.
+## ✨ Key Features
 
-✨ Key Features
+* **AI Cover Letter Generation:** Automatically generates professional, tailored cover letters based on your resume, the job description, and your specific skills.
+* **AI Recipient Finder:** Uses Gemini with Google Search grounding to automatically find the hiring manager's name and company details from a job link or description.
+* **Interactive Dashboard:** A centralized place to manage your career documents.
+* **Modern UI/UX:** Built with React and Tailwind CSS, featuring slide-out navigation and smooth animations.
+* **Multi-Step Form:** An intuitive, guided experience for inputting job details and resume content.
 
-AI Cover Letter Generation: Automatically generates a professional, tailored cover letter based on a job description, your resume text, and key skills.
+## 🛠️ Tech Stack
 
-AI Recipient Finder: Uses Google Search grounding via the Gemini API to analyze a job description and find the hiring manager's name and company details.
+### Frontend
+* **React** (Vite)
+* **Tailwind CSS** (Styling)
+* **React Router** (Navigation)
+* **Bootstrap Icons**
 
-Modern, Responsive UI: A clean, beautiful, and fully responsive interface built with React and Tailwind CSS.
+### Backend & AI
+* **Node.js & Express**
+* **MongoDB** (Database)
+* **Google Gemini API** (`gemini-2.0-flash`)
+* **Google Search Grounding** (For real-time recipient info)
 
-Slide-Out Navigation: A smooth, animated sidebar for easy navigation.
+## 🚀 Getting Started
 
-Dynamic Form: An interactive, multi-part form to guide you through the creation process.
+### Prerequisites
+* Node.js (v18.0.0 or later)
+* MongoDB Atlas account
+* Google AI Studio API Key
 
-🛠️ Tech Stack
+### Installation
 
-Frontend: React (Vite)
+1.  **Clone the repository:**
+    ```bash
+    git clone [https://github.com/Benny45123/CareerForge-AI.git](https://github.com/Benny45123/CareerForge-AI.git)
+    cd CareerForge-AI
+    ```
 
-Styling: Tailwind CSS
+2.  **Setup Backend:**
+    ```bash
+    cd backend
+    npm install
+    ```
+    Create a `.env` file in the `backend` folder:
+    ```env
+    PORT=5000
+    MONGODB_URI=your_mongodb_connection_string
+    GEMINI_API_KEY=your_gemini_key_here
+    ```
+    Start the backend:
+    ```bash
+    npm start
+    ```
 
-AI: Google Gemini API (gemini-2.5-flash)
+3.  **Setup Frontend:**
+    ```bash
+    cd ../frontend
+    npm install
+    ```
+    Start the frontend:
+    ```bash
+    npm run dev
+    ```
 
-Routing: React Router
+## 📁 Project Structure
 
-Icons: Bootstrap Icons
+```text
+├── backend/            # Express.js server & MongoDB models
+│   ├── models/         # Database schemas
+│   └── server.js       # API endpoints & Gemini integration
+├── frontend/           # React application
+│   ├── src/
+│   │   ├── components/ # Reusable UI components
+│   │   └── App.jsx     # Main application logic
+└── vercel.json         # Deployment configuration
 
-🚀 Getting Started
-
-To get a local copy up and running, follow these simple steps.
-
-Prerequisites
-
-Node.js (v18.0.0 or later)
-
-npm or yarn
-
-Installation
-
-Clone the repository:
-
-git clone [reponame]
-
-
-Install NPM packages:
-
-npm install
-
-
-Run the development server:
-
-npm run dev
-
-
-The app will be running at http://localhost:5173.
-
-How It Works
-
-This application is built as a single-page app (SPA) using React. The App.jsx file contains all components and logic.
-
-AI Features
-
-Find Recipient Info:
-
-The user pastes a job description.
-
-When the "Find Recipient" button is clicked, the app sends the job description to the Gemini API with Google Search grounding enabled.
-
-It requests a JSON response containing the recipientName, companyName, and companyAddress, which are then used to pre-fill the "To:" section of the form.
-
-Generate Cover Letter:
-
-The user fills out their information ("From:"), the recipient information ("To:"), the job description, their resume text, and any focus skills.
-
-When the "Generate Cover Letter" button is clicked, all this data is compiled into a detailed system prompt.
-
-This prompt is sent to the Gemini API, which generates a complete, professional cover letter draft based on all the provided context.
-
-The draft is then displayed in a text area, ready for the user to review, edit, and use.
-
-📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
+Developed by Benny
